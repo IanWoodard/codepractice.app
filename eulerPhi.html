@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>EulerPhi</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="lib/codemirror.css" />
+    <link rel="stylesheet" href="theme/monokai.css" />
+    <link rel="stylesheet" href="addon/hint/show-hint.css" />
+    <link rel="stylesheet" href="addon/lint/lint.css" />
+    <link rel="stylesheet" href="css/practice.css" />
+    <link rel="stylesheet" href="css/nav.css" type="text/css" />
+    <script src="lib/codemirror.js"></script>
+    <script src="mode/javascript/javascript.js"></script>
+    <script src="https://unpkg.com/jshint@2.9.6/dist/jshint.js"></script>
+    <script src="addon/lint/lint.js"></script>
+    <script src="addon/lint/javascript-lint.js"></script>
+    <script src="addon/selection/active-line.js"></script>
+    <script src="addon/edit/closebrackets.js"></script>
+    <script src="addon/edit/matchbrackets.js"></script>
+    <script src="addon/hint/show-hint.js"></script>
+    <script src="addon/hint/javascript-hint.js"></script>
+  </head>
+  <body>
+    <nav>
+      <div id="nav" class="nav">
+        <ul>
+          <li><a href="index.html" class="nav-a" draggable="false">Practice</a></li>
+          <li><a href="leaderboard.html" class="nav-a" draggable="false">Leaderboard</a></li>
+          <li id="profile" style="display: none"><a href="profile.html" class="nav-a" draggable="false">Profile</a></li>
+          <li id="login" style="display: none">
+            <a href="#" onclick="return logInGoogle();" class="nav-a" draggable="false">Login</a>
+          </li>
+          <li id="logout" style="display: none">
+            <a href="#" onclick="return logOutGoogle();" class="nav-a" draggable="false">Logout</a>
+          </li>
+          <li class="navname">
+            <p class="name">Code Practice</p>
+          </li>
+        </ul>
+      </div>
+      <div class="navbar-cont">
+        <div class="navbar-hamburger-menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="navbarname">
+          <p class="name">Code Practice</p>
+        </div>
+      </div>
+    </nav>
+    <div class="code-cont">
+      <textarea id="code" name="code">
+function eulerPhi(n) {
+  return -1;
+}
+      </textarea>
+      <div id="remember-code-cont" style="text-align: center"></div>
+    </div>
+    <div class="post-code-cont">
+      <button id="run-tests">Run Tests</button>
+      <div id="progress-wrap" class="progress-wrap" hidden>
+        <div id="progress-cont" class="progress-cont">
+          <div id="progress-bar" class="progress-bar"></div>
+        </div>
+        <span>Ran <span id="ran-tests">0</span> tests</span>
+      </div>
+      <div id="tests" class="tests-cont"></div>
+    </div>
+  </body>
+  <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
+  <script type="text/javascript" src="js/nav.js"></script>
+  <script>
+    var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+      lineNumbers: true,
+      theme: "default",
+      styleActiveLine: true,
+      gutters: ["CodeMirror-lint-markers"],
+      lint: true,
+      autoCloseBrackets: true,
+      matchBrackets: true,
+      extraKeys: { "Ctrl-Space": "autocomplete" },
+      mode: { name: "javascript", globalVars: false },
+    });
+    if (window.localStorage.getItem("eulerPhi") != null) {
+      $("#remember-code-cont").append(
+        "<p " +
+          "style='margin: 0; padding: 5px; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black;'>" +
+          "Your previous code was restored. " +
+          "<span id='reset-to-default' style='text-decoration: underline; " +
+          "cursor: pointer;'>Reset code to default</span>" +
+          "<img src='svg/x-icon.svg' width='16' height='16' class='fas fa-times' id='close-remember-code-cont' style='float: right; cursor: pointer;'></i></p>"
+      );
+      editor.setValue(window.localStorage.getItem("eulerPhi"));
+    }
+    $("#close-remember-code-cont").click(function () {
+      $("#remember-code-cont").hide();
+    });
+    $("#reset-to-default").click(function () {
+      window.localStorage.removeItem("eulerPhi");
+      location.reload();
+    });
+    editor.on("change", function (cm, change) {
+      window.localStorage.setItem("eulerPhi", editor.getValue());
+    });
+  </script>
+  <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-database.js"></script>
+  <script src="js/app.js"></script>
+  <script type="text/javascript" src="js/tester.js"></script>
+  <script>
+    const ref = {
+      tests: [
+        { func: "return eulerPhi(1);", ans: 1 },
+        { func: "return eulerPhi(2);", ans: 1 },
+        { func: "return eulerPhi(3);", ans: 2 },
+        { func: "return eulerPhi(4);", ans: 2 },
+        { func: "return eulerPhi(5);", ans: 4 },
+        { func: "return eulerPhi(6);", ans: 2 },
+        { func: "return eulerPhi(7);", ans: 6 },
+        { func: "return eulerPhi(8);", ans: 4 },
+        { func: "return eulerPhi(9);", ans: 6 },
+        { func: "return eulerPhi(10);", ans: 4 },
+        { func: "return eulerPhi(11);", ans: 10 },
+        { func: "return eulerPhi(12);", ans: 4 },
+        { func: "return eulerPhi(25);", ans: 20 },
+        { func: "return eulerPhi(37);", ans: 36 },
+        { func: "return eulerPhi(73);", ans: 72 },
+        { func: "return eulerPhi(74);", ans: 36 },
+        { func: "return eulerPhi(95);", ans: 72 },
+        { func: "return eulerPhi(102);", ans: 32 },
+        { func: "return eulerPhi(529);", ans: 506 },
+        { func: "return eulerPhi(12294);", ans: 4092 },
+        { func: "return eulerPhi(95231);", ans: 95230 },
+        { func: "return eulerPhi(95293);", ans: 86620 },
+      ],
+    };
+    $("#run-tests").click(function () {
+      runtests(ref, "eulerPhi");
+    });
+  </script>
+</html>
