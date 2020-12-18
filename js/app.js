@@ -93,3 +93,21 @@ function addUserDefault(user) {
     count: 0,
   });
 }
+
+function addSolvedProblem(problem_name) {
+  var cur_user = firebase.auth().currentUser;
+  if (cur_user) {
+    var problems_list = firebase.database().ref("users/" + cur_user.uid + "/problems");
+    var new_problem = problems_list.child(problem_name);
+    new_problem.set({
+      solved: true,
+    });
+    problems_list.once("value", (snapshot) => {
+      var user = firebase.database().ref("users/" + cur_user.uid);
+      var num_solved = user.child("numSolved");
+      num_solved.set({
+        count: snapshot.numChildren(),
+      });
+    });
+  }
+}
