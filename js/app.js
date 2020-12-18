@@ -11,3 +11,29 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
+
+var provider = new firebase.auth.GoogleAuthProvider();
+function logInGoogle() {
+  firebase
+    .auth()
+    .signInWithPopup(provider)
+    .then(function (result) {
+      //logged in
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  return false;
+}
+function logOutGoogle() {
+  firebase
+    .auth()
+    .signOut()
+    .then(function () {
+      //logged out
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  return false;
+}
