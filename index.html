@@ -1,12 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <title>Code Practice</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-</head>
-<body>
-
+    <link rel="stylesheet" href="css/nav.css" type="text/css" />
+  </head>
+  <body>
+    <nav>
+      <div id="nav" class="nav">
+        <ul>
+          <li>
+            <a href="javascript:void(0)" class="nav-a" draggable="false">Practice</a>
+          </li>
+          <li>
+            <a href="javascript:void(0)" class="nav-a" draggable="false">Leaderboard</a>
+          </li>
+          <li id="profile" style="display: none">
+            <a href="javascript:void(0)" class="nav-a" draggable="false">Profile</a>
+          </li>
+          <li id="login">
+            <a href="javascript:void(0)" onclick="return logInGoogle();" class="nav-a" draggable="false">Login</a>
+          </li>
+          <li id="logout" style="display: none">
+            <a href="javascript:void(0)" onclick="return logOutGoogle();" class="nav-a" draggable="false">Logout</a>
+          </li>
+          <li class="navname">
+            <p class="name">Code Practice</p>
+          </li>
+        </ul>
+      </div>
+      <div class="navbar-cont">
+        <div class="navbar-hamburger-menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="navbarname">
+          <p class="name">Code Practice</p>
+        </div>
+      </div>
+    </nav>
     <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-auth.js"></script>
