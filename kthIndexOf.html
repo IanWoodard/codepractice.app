@@ -48,19 +48,63 @@
         </div>
       </div>
     </nav>
+    <div class="documentation">
+      <p>Given an array of integers, a desired occurance, and an integer, return the index of the desired occurance of the given integer in the array.</p>
+      <p><em>If there is no kth index of the given num, -1 is returned.</em></p>
+      <p>
+        <strong>Parameter(s):</strong>
+        <ul>
+          <li><em>arr:</em> an array of integers</li>
+          <li><em>k:</em> the desired occurance</li>
+          <li><em>num:</em> the desired integer</li>
+        </ul>
+      </p>
+      <p>
+        <strong>Returns:</strong>
+        <ul>
+          <li><em>integer:</em> the index of the kth occurance (or -1 if one does not exist)</li>
+        </ul>
+      </p>
+      <p>
+        <strong>Constraints:</strong>
+        <ul>
+          <li><code>arr &ne; null</code></li>
+          <li><code>1 &leq; arr.length &leq; 1000</code></li>
+          <li><code>1 &leq; k &leq; 1000</code></li>
+          <li><code>-2147483647 &leq; num &leq; 2147483647</code></li>
+        </ul>
+      </p>
+      <p>
+        <strong>Example 1:</strong>
+        <p>Input:</p>
+        <div class="code-sample"><code>[1,1] 2 1</code></div>
+        <p>Output:</p>
+        <div class="code-sample"><code>1</code></div>
+      </p>
+      <p>
+        <strong>Example 2:</strong>
+        <p>Input:</p>
+        <div class="code-sample"><code>[1,2,3,2,1] 1 3</code></div>
+        <p>Output:</p>
+        <div class="code-sample"><code>2</code></div>
+      </p>
+      <p>
+        <strong>Example 3:</strong>
+        <p>Input:</p>
+        <div class="code-sample"><code>[1,2,3,4] 2 3</code></div>
+        <p>Output:</p>
+        <div class="code-sample"><code>-1</code></div>
+      </p>
+      <p>
+        <strong>Example 4:</strong>
+        <p>Input:</p>
+        <div class="code-sample"><code>[1,2,3,4] 1 5</code></div>
+        <p>Output:</p>
+        <div class="code-sample"><code>-1</code></div>
+      </p>
+    </div>
     <div class="code-cont">
       <textarea id="code" name="code">
-//Returns the kth index (0 based) of the given number in the given array.
-//If there is no kth index of the given num, -1 is returned.
-//Examples:
-//  kthIndexOf([1,1], 2, 1) -> 1
-//  kthIndexOf([1,2,3,2,1], 1, 3) -> 2
-//  kthIndexOf([1,2,3,4], 2, 3) -> -1
-//  kthIndexOf([1,2,3,4], 1, 5) -> -1
-//Constraints:
-//  1 <= arr.length <= 1000
-//  1 <= k <= 1000
-//  -2147483647 <= num <= 2147483647
 function kthIndexOf(arr, k, num) {
   return -1;
 }</textarea
@@ -95,7 +139,7 @@ function kthIndexOf(arr, k, num) {
     if (window.localStorage.getItem("kthIndexOf") != null) {
       $("#remember-code-cont").append(
         "<p " +
-          "style='margin: 0; padding: 5px; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black;'>" +
+          "style='margin: 0; padding: 5px;'>" +
           "Your previous code was restored. " +
           "<span id='reset-to-default' style='text-decoration: underline; " +
           "cursor: pointer;'>Reset code to default</span>" +

@@ -6,12 +6,40 @@
 body {
   font-family: "Roboto", sans-serif;
   margin: 0;
+  background-color: #f8f8f8;
+  padding-bottom: 25px;
+}
+.documentation {
+  margin: 0 auto;
+  margin-top: 70px;
+  margin-bottom: 25px;
+  width: 80%;
+  background-color: white;
+  box-shadow: 0px 5px 14px 0px rgba(0, 0, 0, 0.2);
+  padding: 5px 15px 15px 15px;
+  font-size: 14px;
+}
+.documentation ul {
+  padding: 0px;
+  margin: 0;
+  margin-left: 15px;
+}
+.documentation p {
+  margin: 0;
+  margin-top: 10px;
+}
+.code-sample {
+  padding: 10px;
+  width: 100%;
+  background-color: #f2f2f2;
+  border-radius: 2px;
+  margin-bottom: 8px;
 }
 .code-cont {
   width: 80%;
   margin: 0 auto;
-  margin-top: 70px;
   margin-bottom: 25px;
+  box-shadow: 0px 5px 14px 0px rgba(0, 0, 0, 0.2);
 }
 .post-code-cont {
   width: 80%;
@@ -19,8 +47,10 @@ body {
   text-align: center;
 }
 .CodeMirror {
-  border: 1px solid black;
   font-size: 13px;
+}
+.CodeMirror-gutters {
+  background-color: white;
 }
 .tests-cont {
   width: 100%;
@@ -72,7 +102,8 @@ body {
 }
 @media only screen and (max-width: 900px) {
   .code-cont,
-  .post-code-cont {
-    width: 100%;
+  .post-code-cont,
+  .documentation {
+    width: 90%;
   }
 }

@@ -48,14 +48,38 @@
         </div>
       </div>
     </nav>
+    <div class="documentation">
+      <p>Given an array of integers, return the integer with the largest value.</p>
+      <p>
+        <strong>Parameter(s):</strong>
+        <ul>
+          <li><em>arr:</em> array of integers</li>
+        </ul>
+      </p>
+      <p>
+        <strong>Returns:</strong>
+        <ul>
+          <li><em>integer:</em> the maximum value</li>
+        </ul>
+      </p>
+      <p>
+        <strong>Constraints:</strong>
+        <ul>
+          <li><code>arr &ne; null</code></li>
+          <li><code>1 &leq; arr.length &leq; 100</code></li>
+          <li><code>-2147483647 &leq; arr[i] &leq; 2147483647</code></li>
+        </ul>
+      </p>
+      <p>
+        <strong>Example:</strong>
+        <p>Input:</p>
+        <div class="code-sample"><code>[2,5,1,4,3]</code></div>
+        <p>Output:</p>
+        <div class="code-sample"><code>5</code></div>
+      </p>
+    </div>
     <div class="code-cont">
-      <textarea id="code" name="code">
-//Return the maximum value in the given array.
-//Constraints:
-//  arr will not be null
-//  -2147483647 <= arr[i] <= 2147483647
-//  1 <= arr.length <= 100
-function max(arr) {
+      <textarea id="code" name="code">function max(arr) {
   return -1;
 }</textarea
       >
@@ -88,7 +112,7 @@ function max(arr) {
       if (window.localStorage.getItem("max") != null) {
         $("#remember-code-cont").append(
           "<p " +
-            "style='margin: 0; padding: 5px; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black;'>" +
+            "style='margin: 0; padding: 5px;'>" +
             "Your previous code was restored. " +
             "<span id='reset-to-default' style='text-decoration: underline; " +
             "cursor: pointer;'>Reset code to default</span>" +

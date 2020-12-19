@@ -48,14 +48,40 @@
         </div>
       </div>
     </nav>
+    <div class="documentation">
+      <p>Given an array two integers, return their sum.</p>
+      <p>
+        <strong>Parameter(s):</strong>
+        <ul>
+          <li><em>a:</em> first integer</li>
+          <li><em>b:</em> second integer</li>
+        </ul>
+      </p>
+      <p>
+        <strong>Returns:</strong>
+        <ul>
+          <li><em>integer:</em> the sum</li>
+        </ul>
+      </p>
+      <p>
+        <strong>Constraints:</strong>
+        <ul>
+          <li><code>a &ne; null</code></li>
+          <li><code>b &ne; null</code></li>
+          <li><code>-2147483647 &leq; a &leq; 2147483647</code></li>
+          <li><code>-2147483647 &leq; b &leq; 2147483647</code></li>
+        </ul>
+      </p>
+      <p>
+        <strong>Example:</strong>
+        <p>Input:</p>
+        <div class="code-sample"><code>1 2</code></div>
+        <p>Output:</p>
+        <div class="code-sample"><code>3</code></div>
+      </p>
+    </div>
     <div class="code-cont">
       <textarea id="code" name="code">
-//Return the sum of the numbers a and b.
-//Constraints:
-//  a will not be null
-//  b will not be null
-//  -2147483647 <= a <= 2147483647
-//  -2147483647 <= b <= 2147483647
 function sum(a, b) {
   return -1;
 }</textarea
@@ -89,13 +115,13 @@ function sum(a, b) {
     });
     if (window.localStorage.getItem("sum") != null) {
       $("#remember-code-cont").append(
-        "<p " +
-          "style='margin: 0; padding: 5px; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black;'>" +
-          "Your previous code was restored. " +
-          "<span id='reset-to-default' style='text-decoration: underline; " +
-          "cursor: pointer;'>Reset code to default</span>" +
-          "<img src='svg/x-icon.svg' width='16' height='16' class='fas fa-times' id='close-remember-code-cont' style='float: right; cursor: pointer;'></i></p>"
-      );
+          "<p " +
+            "style='margin: 0; padding: 5px;'>" +
+            "Your previous code was restored. " +
+            "<span id='reset-to-default' style='text-decoration: underline; " +
+            "cursor: pointer;'>Reset code to default</span>" +
+            "<img src='svg/x-icon.svg' width='16' height='16' class='fas fa-times' id='close-remember-code-cont' style='float: right; cursor: pointer;'></i></p>"
+        );
       editor.setValue(window.localStorage.getItem("sum"));
     }
     $("#close-remember-code-cont").click(function () {

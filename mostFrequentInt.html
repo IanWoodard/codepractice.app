@@ -48,17 +48,53 @@
         </div>
       </div>
     </nav>
+    <div class="documentation">
+      <p>Given an array of integers, return the most frequent integer.</p>
+      <p><em>If multiple numbers are tied for highest frequency, return the largest of them.</em></p>
+      <p>
+        <strong>Parameter(s):</strong>
+        <ul>
+          <li><em>arr:</em> an array of integers</li>
+        </ul>
+      </p>
+      <p>
+        <strong>Returns:</strong>
+        <ul>
+          <li><em>integer:</em> the most frequent integer</li>
+        </ul>
+      </p>
+      <p>
+        <strong>Constraints:</strong>
+        <ul>
+          <li><code>arr &ne; null</code></li>
+          <li><code>1 &leq; arr.length &leq; 1000</code></li>
+          <li><code>-2147483647 &leq; arr[i] &leq; 2147483647</code></li>
+        </ul>
+      </p>
+      <p>
+        <strong>Example 1:</strong>
+        <p>Input:</p>
+        <div class="code-sample"><code>[1,2,3,1]</code></div>
+        <p>Output:</p>
+        <div class="code-sample"><code>1</code></div>
+      </p>
+      <p>
+        <strong>Example 2:</strong>
+        <p>Input:</p>
+        <div class="code-sample"><code>[1,2,3]</code></div>
+        <p>Output:</p>
+        <div class="code-sample"><code>3</code></div>
+      </p>
+      <p>
+        <strong>Example 3:</strong>
+        <p>Input:</p>
+        <div class="code-sample"><code>[4]</code></div>
+        <p>Output:</p>
+        <div class="code-sample"><code>4</code></div>
+      </p>
+    </div>
     <div class="code-cont">
       <textarea id="code" name="code">
-//Returns the most frequent integer in the given array.
-//If multiple numbers are tied for highest frequency, return the largest of them.
-//Examples:
-//  mostFrequentInt([1,2,3,1]) -> 1
-//  mostFrequentInt([1,2,3]) -> 3
-//  mostFrequentInt([4]) -> 4
-//Constraints:
-//  1 <= arr.length <= 1000
-//  -2147483647 <= arr[i] <= 2147483647
 function mostFrequentInt(arr) {
   return -1;
 }</textarea
@@ -93,7 +129,7 @@ function mostFrequentInt(arr) {
     if (window.localStorage.getItem("mostFrequentInt") != null) {
       $("#remember-code-cont").append(
         "<p " +
-          "style='margin: 0; padding: 5px; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black;'>" +
+          "style='margin: 0; padding: 5px;'>" +
           "Your previous code was restored. " +
           "<span id='reset-to-default' style='text-decoration: underline; " +
           "cursor: pointer;'>Reset code to default</span>" +

@@ -48,16 +48,52 @@
         </div>
       </div>
     </nav>
+    <div class="documentation">
+      <p>Given a string, return whether it is a palindrome.</p>
+      <p><em>Spaces do not matter. Not case-sensitive.</em></p>
+      <p>
+        <strong>Parameter(s):</strong>
+        <ul>
+          <li><em>str:</em> a string</li>
+        </ul>
+      </p>
+      <p>
+        <strong>Returns:</strong>
+        <ul>
+          <li><em>boolean:</em> whether it is a palindrome</li>
+        </ul>
+      </p>
+      <p>
+        <strong>Constraints:</strong>
+        <ul>
+          <li><code>str &ne; null</code></li>
+          <li><code>1 &leq; str.length &leq; 1000</code></li>
+        </ul>
+      </p>
+      <p>
+        <strong>Example 1:</strong>
+        <p>Input:</p>
+        <div class="code-sample"><code>"rar"</code></div>
+        <p>Output:</p>
+        <div class="code-sample"><code>true</code></div>
+      </p>
+      <p>
+        <strong>Example 2:</strong>
+        <p>Input:</p>
+        <div class="code-sample"><code>"cat"</code></div>
+        <p>Output:</p>
+        <div class="code-sample"><code>false</code></div>
+      </p>
+      <p>
+        <strong>Example 3:</strong>
+        <p>Input:</p>
+        <div class="code-sample"><code>"Bat tab"</code></div>
+        <p>Output:</p>
+        <div class="code-sample"><code>true</code></div>
+      </p>
+    </div>
     <div class="code-cont">
       <textarea id="code" name="code">
-//Returns whether the given string is palindrome.
-//Note: Spaces do not matter. Not case-sensitive.
-//Examples:
-//  isPalindrome("rar") -> true
-//  isPalindrome("cat") -> false
-//  isPalindrome("Bat tab") -> true
-//Constraints:
-//  1 <= str.length <= 1000
 function isPalindrome(str) {
   return false;
 }</textarea
@@ -92,7 +128,7 @@ function isPalindrome(str) {
     if (window.localStorage.getItem("isPalindrome") != null) {
       $("#remember-code-cont").append(
         "<p " +
-          "style='margin: 0; padding: 5px; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black;'>" +
+          "style='margin: 0; padding: 5px;'>" +
           "Your previous code was restored. " +
           "<span id='reset-to-default' style='text-decoration: underline; " +
           "cursor: pointer;'>Reset code to default</span>" +

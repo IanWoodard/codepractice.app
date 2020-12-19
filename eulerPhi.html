@@ -50,6 +50,9 @@
         </div>
       </div>
     </nav>
+    <div class="documentation">
+      <p>Coming soon.</p>
+    </div>
     <div class="code-cont">
       <textarea id="code" name="code">
 function eulerPhi(n) {
@@ -86,7 +89,7 @@ function eulerPhi(n) {
     if (window.localStorage.getItem("eulerPhi") != null) {
       $("#remember-code-cont").append(
         "<p " +
-          "style='margin: 0; padding: 5px; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black;'>" +
+          "style='margin: 0; padding: 5px;'>" +
           "Your previous code was restored. " +
           "<span id='reset-to-default' style='text-decoration: underline; " +
           "cursor: pointer;'>Reset code to default</span>" +

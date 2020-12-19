@@ -48,19 +48,46 @@
         </div>
       </div>
     </nav>
+    <div class="documentation">
+      <p>Given an array of 2D points, returns whether they form a line.</p>
+      <p>
+        <strong>Parameter(s):</strong>
+        <ul>
+          <li><em>arr:</em> array of 2D points</li>
+        </ul>
+      </p>
+      <p>
+        <strong>Returns:</strong>
+        <ul>
+          <li><em>boolean:</em> whether they form a line</li>
+        </ul>
+      </p>
+      <p>
+        <strong>Constraints:</strong>
+        <ul>
+          <li><code>arr &ne; null</code></li>
+          <li><code>1 &leq; arr.length &leq; 1000</code></li>
+          <li><code>-2147483647 &leq; arr[i][0] &leq; 2147483647</code></li>
+          <li><code>-2147483647 &leq; arr[i][1] &leq; 2147483647</code></li>
+        </ul>
+      </p>
+      <p>
+        <strong>Example 1:</strong>
+        <p>Input:</p>
+        <div class="code-sample"><code>[[0,0],[1,1]]</code></div>
+        <p>Output:</p>
+        <div class="code-sample"><code>true</code></div>
+      </p>
+      <p>
+        <strong>Example 2:</strong>
+        <p>Input:</p>
+        <div class="code-sample"><code>[[0,0],[1,1],[1,2]]</code></div>
+        <p>Output:</p>
+        <div class="code-sample"><code>false</code></div>
+      </p>
+    </div>
     <div class="code-cont">
       <textarea id="code" name="code">
-//Returns whether the given array of 2D points form a line.
-//Within the array are arrays of two numbers that can be accessed as follows:
-//  arr[i][0] for the x-coordinate
-//  and arr[i][1] for the y-coordinate
-//Examples:
-//  isLinear([[0,0], [1,1]]) -> true
-//  isLinear([[0,0], [1,1], [1, 2]]) -> false
-//Constraints:
-//  1 <= arr.length <= 1000
-//  -2147483647 <= arr[i][0] <= 2147483647
-//  -2147483647 <= arr[i][1] <= 2147483647
 function isLinear(arr) {
   return false;
 }</textarea
@@ -95,7 +122,7 @@ function isLinear(arr) {
     if (window.localStorage.getItem("isLinear") != null) {
       $("#remember-code-cont").append(
         "<p " +
-          "style='margin: 0; padding: 5px; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black;'>" +
+          "style='margin: 0; padding: 5px;'>" +
           "Your previous code was restored. " +
           "<span id='reset-to-default' style='text-decoration: underline; " +
           "cursor: pointer;'>Reset code to default</span>" +

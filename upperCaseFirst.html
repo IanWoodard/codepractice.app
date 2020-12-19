@@ -48,12 +48,56 @@
         </div>
       </div>
     </nav>
+    <div class="documentation">
+      <p>Given a string, return that same string with all of the upper-case characters at the front.</p>
+      <p><em>All other orderings should be kept. There are no spaces.</em></p>
+      <p>
+        <strong>Parameter(s):</strong>
+        <ul>
+          <li><em>str:</em> a string</li>
+        </ul>
+      </p>
+      <p>
+        <strong>Returns:</strong>
+        <ul>
+          <li><em>string:</em> a string with all of the upper-case characters at the front</li>
+        </ul>
+      </p>
+      <p>
+        <strong>Constraints:</strong>
+        <ul>
+          <li><code>str &ne; null</code></li>
+          <li><code>1 &leq; str.length &leq; 1000</code></li>
+        </ul>
+      </p>
+      <p>
+        <strong>Example 1:</strong>
+        <p>Input:</p>
+        <div class="code-sample"><code>"heLlO"</code></div>
+        <p>Output:</p>
+        <div class="code-sample"><code>"LOhel"</code></div>
+      </p>
+      <p>
+        <strong>Example 2:</strong>
+        <p>Input:</p>
+        <div class="code-sample"><code>"fOoBAr"</code></div>
+        <p>Output:</p>
+        <div class="code-sample"><code>"OBAfor"</code></div>
+      </p>
+      <p>
+        <strong>Example 3:</strong>
+        <p>Input:</p>
+        <div class="code-sample"><code>"cake"</code></div>
+        <p>Output:</p>
+        <div class="code-sample"><code>"cake"</code></div>
+      </p>
+    </div>
     <div class="code-cont">
       <textarea id="code" name="code">
 function upperCaseFirst(str) {
   return false;
-}
-      </textarea>
+}</textarea
+      >
       <div id="remember-code-cont" style="text-align: center"></div>
     </div>
     <div class="post-code-cont">
@@ -84,7 +128,7 @@ function upperCaseFirst(str) {
     if (window.localStorage.getItem("upperCaseFirst") != null) {
       $("#remember-code-cont").append(
         "<p " +
-          "style='margin: 0; padding: 5px; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black;'>" +
+          "style='margin: 0; padding: 5px;'>" +
           "Your previous code was restored. " +
           "<span id='reset-to-default' style='text-decoration: underline; " +
           "cursor: pointer;'>Reset code to default</span>" +

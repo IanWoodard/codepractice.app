@@ -48,14 +48,40 @@
         </div>
       </div>
     </nav>
+    <div class="documentation">
+      <p>Given an array two integers, return their product.</p>
+      <p>
+        <strong>Parameter(s):</strong>
+        <ul>
+          <li><em>a:</em> first integer</li>
+          <li><em>b:</em> second integer</li>
+        </ul>
+      </p>
+      <p>
+        <strong>Returns:</strong>
+        <ul>
+          <li><em>integer:</em> the product</li>
+        </ul>
+      </p>
+      <p>
+        <strong>Constraints:</strong>
+        <ul>
+          <li><code>a &ne; null</code></li>
+          <li><code>b &ne; null</code></li>
+          <li><code>-2147483647 &leq; a &leq; 2147483647</code></li>
+          <li><code>-2147483647 &leq; b &leq; 2147483647</code></li>
+        </ul>
+      </p>
+      <p>
+        <strong>Example:</strong>
+        <p>Input:</p>
+        <div class="code-sample"><code>2 3</code></div>
+        <p>Output:</p>
+        <div class="code-sample"><code>6</code></div>
+      </p>
+    </div>
     <div class="code-cont">
       <textarea id="code" name="code">
-//Return the product of the numbers a and b.
-//Constraints:
-//  a will not be null
-//  b will not be null
-//  -2147483647 <= a <= 2147483647
-//  -2147483647 <= b <= 2147483647
 function product(a, b) {
   return -1;
 }</textarea
@@ -89,7 +115,7 @@ function product(a, b) {
       if (window.localStorage.getItem("product") != null) {
         $("#remember-code-cont").append(
           "<p " +
-            "style='margin: 0; padding: 5px; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black;'>" +
+            "style='margin: 0; padding: 5px;'>" +
             "Your previous code was restored. " +
             "<span id='reset-to-default' style='text-decoration: underline; " +
             "cursor: pointer;'>Reset code to default</span>" +
