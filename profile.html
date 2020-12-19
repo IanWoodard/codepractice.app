@@ -207,77 +207,12 @@
       var url_search = window.location.search;
       if (url_search != "") {
         url_search = url_search.replace("?", "");
-        var ref = firebase.database().ref("users/" + url_search);
-        ref.once("value", (snapshot) => {
-          var val = snapshot.val();
-          if (val != null) {
-            if (val.photo && val.photo.url) {
-              $("#profile-info-cont").append(
-                "<img class='profile-picture' width='96' height='96' src='" + val.photo.url + "'>"
-              );
-            } else {
-              $("#profile-info-cont").append(
-                "<img class='profile-picture' width='96' height='96' src='https://firebasestorage.googleapis.com/v0/b/personal-project-dac3e.appspot.com/o/profile_pictures%2Fdeafult_profile_picture.jpg?alt=media&token=15f9ae4c-d0fd-4a6c-8e8c-54c7009ad964'>"
-              );
-            }
-            $("#profile-info-cont").append("<div class='profile-name'>" + val.name + "</div>");
-            $("#profile-info-cont").append(
-              "<div class='profile-joined-date'>Joined: <strong>" + val.joined.date + "</strong></div>"
-            );
-            $("#profile-info-cont").append(
-              "<div class='profile-score'>Score: <strong>" + val.numSolved.count + "</strong></div>"
-            );
-            $("#profile-info-cont").append("<div id='profile-counts-cont' class='profile-counts-cont'></div>");
-            $("#profile-counts-cont").append(
-              "<div id='followers-count-cont' class='count-inner-cont'>Followers<br></div>"
-            );
-            $("#profile-counts-cont").append(
-              "<div id='following-count-cont' class='count-inner-cont'>Following<br></div>"
-            );
-            $("#followers-count-cont").append("<span id='followers-count-cont' class='count-inner'>0</span");
-            $("#following-count-cont").append("<span id='following-count-cont' class='count-inner'>0</span");
-            $("#profile-loader").fadeOut(150);
-            $("#profile-cont").delay(150).fadeIn(150);
-          }
-        });
+        loadProfile(url_search, false);
       } else {
         firebase.auth().onAuthStateChanged(function (user) {
           $("#profile-info-cont").html("");
           if (user) {
-            var ref = firebase.database().ref("users/" + user.uid);
-            ref.once("value", (snapshot) => {
-              var val = snapshot.val();
-              if (val.photo && val.photo.url) {
-                $("#profile-info-cont").append(
-                  "<img class='profile-picture' width='96' height='96' src='" + val.photo.url + "'>"
-                );
-              } else {
-                $("#profile-info-cont").append(
-                  "<img class='profile-picture' width='96' height='96' src='https://firebasestorage.googleapis.com/v0/b/personal-project-dac3e.appspot.com/o/profile_pictures%2Fdeafult_profile_picture.jpg?alt=media&token=15f9ae4c-d0fd-4a6c-8e8c-54c7009ad964'>"
-                );
-              }
-              $("#profile-info-cont").append(
-                "<div class='center'><button id='upload-profile-picture' onclick='uploadPopup();'>Upload Profile Picture</button></div>"
-              );
-              $("#profile-info-cont").append("<div class='profile-name'>" + val.name + "</div>");
-              $("#profile-info-cont").append(
-                "<div class='profile-joined-date'>Joined: <strong>" + val.joined.date + "</strong></div>"
-              );
-              $("#profile-info-cont").append(
-                "<div class='profile-score'>Score: <strong>" + val.numSolved.count + "</strong></div>"
-              );
-              $("#profile-info-cont").append("<div id='profile-counts-cont' class='profile-counts-cont'></div>");
-              $("#profile-counts-cont").append(
-                "<div id='followers-count-cont' class='count-inner-cont'>Followers<br></div>"
-              );
-              $("#profile-counts-cont").append(
-                "<div id='following-count-cont' class='count-inner-cont'>Following<br></div>"
-              );
-              $("#followers-count-cont").append("<span id='followers-count-cont' class='count-inner'>0</span");
-              $("#following-count-cont").append("<span id='following-count-cont' class='count-inner'>0</span");
-              $("#profile-loader").fadeOut(150);
-              $("#profile-cont").delay(150).fadeIn(150);
-            });
+            loadProfile(user.uid, true);
           }
         });
       }
@@ -357,6 +292,46 @@
           $("#file-save-button").attr("disabled", false);
         }
       });
+      function loadProfile(uid, isLoggedIn) {
+        var ref = firebase.database().ref("users/" + uid);
+        ref.once("value", (snapshot) => {
+          var val = snapshot.val();
+          if (val != null) {
+            if (val.photo && val.photo.url) {
+              $("#profile-info-cont").append(
+                "<img class='profile-picture' width='96' height='96' src='" + val.photo.url + "'>"
+              );
+            } else {
+              $("#profile-info-cont").append(
+                "<img class='profile-picture' width='96' height='96' src='https://firebasestorage.googleapis.com/v0/b/personal-project-dac3e.appspot.com/o/profile_pictures%2Fdeafult_profile_picture.jpg?alt=media&token=15f9ae4c-d0fd-4a6c-8e8c-54c7009ad964'>"
+              );
+            }
+            if (isLoggedIn && firebase.auth().currentUser.uid === uid) {
+              $("#profile-info-cont").append(
+                "<div class='center'><button id='upload-profile-picture' onclick='uploadPopup();'>Upload Profile Picture</button></div>"
+              );
+            }
+            $("#profile-info-cont").append("<div class='profile-name'>" + val.name + "</div>");
+            $("#profile-info-cont").append(
+              "<div class='profile-joined-date'>Joined: <strong>" + val.joined.date + "</strong></div>"
+            );
+            $("#profile-info-cont").append(
+              "<div class='profile-score'>Score: <strong>" + val.numSolved.count + "</strong></div>"
+            );
+            $("#profile-info-cont").append("<div id='profile-counts-cont' class='profile-counts-cont'></div>");
+            $("#profile-counts-cont").append(
+              "<div id='followers-count-cont' class='count-inner-cont'>Followers<br></div>"
+            );
+            $("#profile-counts-cont").append(
+              "<div id='following-count-cont' class='count-inner-cont'>Following<br></div>"
+            );
+            $("#followers-count-cont").append("<span id='followers-count-cont' class='count-inner'>0</span");
+            $("#following-count-cont").append("<span id='following-count-cont' class='count-inner'>0</span");
+            $("#profile-loader").fadeOut(150);
+            $("#profile-cont").delay(150).fadeIn(150);
+          }
+        });
+      }
     </script>
   </body>
 </html>
