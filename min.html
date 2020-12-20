@@ -1,159 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Min</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="lib/codemirror.css" />
-    <link rel="stylesheet" href="theme/monokai.css" />
-    <link rel="stylesheet" href="addon/hint/show-hint.css" />
-    <link rel="stylesheet" href="addon/lint/lint.css" />
-    <link rel="stylesheet" href="css/practice.css" />
-    <link rel="stylesheet" href="css/nav.css" type="text/css" />
-    <script src="lib/codemirror.js"></script>
-    <script src="mode/javascript/javascript.js"></script>
-    <script src="https://unpkg.com/jshint@2.9.6/dist/jshint.js"></script>
-    <script src="addon/lint/lint.js"></script>
-    <script src="addon/lint/javascript-lint.js"></script>
-    <script src="addon/selection/active-line.js"></script>
-    <script src="addon/edit/closebrackets.js"></script>
-    <script src="addon/edit/matchbrackets.js"></script>
-    <script src="addon/hint/show-hint.js"></script>
-    <script src="addon/hint/javascript-hint.js"></script>
-  </head>
-  <body>
-    <nav>
-      <div id="nav" class="nav">
-        <ul>
-          <li><a href="index.html" class="nav-a" draggable="false">Practice</a></li>
-          <li><a href="leaderboard.html" class="nav-a" draggable="false">Leaderboard</a></li>
-          <li id="profile" style="display: none"><a href="profile.html" class="nav-a" draggable="false">Profile</a></li>
-          <li id="login"><a href="#" onclick="return logInGoogle();" class="nav-a" draggable="false">Login</a></li>
-          <li id="logout" style="display: none">
-            <a href="#" onclick="return logOutGoogle();" class="nav-a" draggable="false">Logout</a>
-          </li>
-          <li class="navname">
-            <p class="name">Code Practice</p>
-          </li>
-        </ul>
-      </div>
-      <div class="navbar-cont">
-        <div class="navbar-hamburger-menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-        <div class="navbarname">
+
+<head>
+  <title>Min</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="lib/codemirror.css" />
+  <link rel="stylesheet" href="theme/monokai.css" />
+  <link rel="stylesheet" href="addon/hint/show-hint.css" />
+  <link rel="stylesheet" href="addon/lint/lint.css" />
+  <link rel="stylesheet" href="css/practice.css" />
+  <link rel="stylesheet" href="css/nav.css" type="text/css" />
+  <script src="lib/codemirror.js"></script>
+  <script src="mode/javascript/javascript.js"></script>
+  <script src="https://unpkg.com/jshint@2.9.6/dist/jshint.js"></script>
+  <script src="addon/lint/lint.js"></script>
+  <script src="addon/lint/javascript-lint.js"></script>
+  <script src="addon/selection/active-line.js"></script>
+  <script src="addon/edit/closebrackets.js"></script>
+  <script src="addon/edit/matchbrackets.js"></script>
+  <script src="addon/hint/show-hint.js"></script>
+  <script src="addon/hint/javascript-hint.js"></script>
+</head>
+
+<body>
+  <nav>
+    <div id="nav" class="nav">
+      <ul>
+        <li><a href="index.html" class="nav-a" draggable="false">Practice</a></li>
+        <li><a href="leaderboard.html" class="nav-a" draggable="false">Leaderboard</a></li>
+        <li id="profile" style="display: none"><a href="profile.html" class="nav-a" draggable="false">Profile</a></li>
+        <li id="login"><a href="#" onclick="return logInGoogle();" class="nav-a" draggable="false">Login</a></li>
+        <li id="logout" style="display: none">
+          <a href="#" onclick="return logOutGoogle();" class="nav-a" draggable="false">Logout</a>
+        </li>
+        <li class="navname">
           <p class="name">Code Practice</p>
-        </div>
+        </li>
+      </ul>
+    </div>
+    <div class="navbar-cont">
+      <div class="navbar-hamburger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
-    </nav>
-    <div class="documentation">
+      <div class="navbarname">
+        <p class="name">Code Practice</p>
+      </div>
+    </div>
+  </nav>
+  <div class="documentation-cont">
+    <div id="documentation" class="documentation">
       <p>Given an array of integers, return the integer with the smallest value.</p>
       <p>
         <strong>Parameter(s):</strong>
-        <ul>
-          <li><em>arr:</em> array of integers</li>
-        </ul>
+      <ul>
+        <li><em>arr:</em> array of integers</li>
+      </ul>
       </p>
       <p>
         <strong>Returns:</strong>
-        <ul>
-          <li><em>integer:</em> the minmium value</li>
-        </ul>
+      <ul>
+        <li><em>integer:</em> the minmium value</li>
+      </ul>
       </p>
       <p>
         <strong>Constraints:</strong>
-        <ul>
-          <li><code>arr &ne; null</code></li>
-          <li><code>1 &leq; arr.length &leq; 100</code></li>
-          <li><code>-2147483647 &leq; arr[i] &leq; 2147483647</code></li>
-        </ul>
+      <ul>
+        <li><code>arr &ne; null</code></li>
+        <li><code>1 &leq; arr.length &leq; 100</code></li>
+        <li><code>-2147483647 &leq; arr[i] &leq; 2147483647</code></li>
+      </ul>
       </p>
       <p>
         <strong>Example:</strong>
-        <p>Input:</p>
-        <div class="code-sample"><code>[2,5,1,4,3]</code></div>
-        <p>Output:</p>
-        <div class="code-sample"><code>1</code></div>
+      <p>Input:</p>
+      <div class="code-sample"><code>[2,5,1,4,3]</code></div>
+      <p>Output:</p>
+      <div class="code-sample"><code>1</code></div>
       </p>
     </div>
-    <div class="code-cont">
-      <textarea id="code" name="code">function min(arr) {
+    <button class="show-button" id="show-more">Show More</button>
+    <button class="show-button" id="show-less" hidden>Show Less</button>
+  </div>
+  <div class="code-cont">
+    <textarea id="code" name="code">function min(arr) {
   return -1;
-}</textarea
-      >
-      <div id="remember-code-cont" style="text-align: center"></div>
-    </div>
-    <div class="post-code-cont">
-      <button id="run-tests">Run Tests</button>
-      <div id="progress-wrap" class="progress-wrap" hidden>
-        <div id="progress-cont" class="progress-cont">
-          <div id="progress-bar" class="progress-bar"></div>
-        </div>
-        <span>Ran <span id="ran-tests">0</span> tests</span>
+}</textarea>
+    <div id="remember-code-cont" style="text-align: center"></div>
+  </div>
+  <div class="post-code-cont">
+    <button id="run-tests">Run Tests</button>
+    <div id="progress-wrap" class="progress-wrap" hidden>
+      <div id="progress-cont" class="progress-cont">
+        <div id="progress-bar" class="progress-bar"></div>
       </div>
-      <div id="tests" class="tests-cont"></div>
+      <span>Ran <span id="ran-tests">0</span> tests</span>
     </div>
-    <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
-    <script type="text/javascript" src="js/nav.js"></script>
-    <script>
-      var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
-        lineNumbers: true,
-        theme: "default",
-        styleActiveLine: true,
-        gutters: ["CodeMirror-lint-markers"],
-        lint: true,
-        autoCloseBrackets: true,
-        matchBrackets: true,
-        extraKeys: { "Ctrl-Space": "autocomplete" },
-        mode: { name: "javascript", globalVars: false },
-      });
-      if (window.localStorage.getItem("min") != null) {
-        $("#remember-code-cont").append(
-          "<p " +
-            "style='margin: 0; padding: 5px;'>" +
-            "Your previous code was restored. " +
-            "<span id='reset-to-default' style='text-decoration: underline; " +
-            "cursor: pointer;'>Reset code to default</span>" +
-            "<img src='svg/x-icon.svg' width='16' height='16' class='fas fa-times' id='close-remember-code-cont' style='float: right; cursor: pointer;'></i></p>"
-        );
-        editor.setValue(window.localStorage.getItem("min"));
-      }
-      $("#close-remember-code-cont").click(function () {
-        $("#remember-code-cont").hide();
-      });
-      $("#reset-to-default").click(function () {
-        window.localStorage.removeItem("min");
-        location.reload();
-      });
-      editor.on("change", function (cm, change) {
-        window.localStorage.setItem("min", editor.getValue());
-      });
-    </script>
-    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-database.js"></script>
-    <script src="js/app.js"></script>
-    <script type="text/javascript" src="js/tester.js"></script>
-    <script>
-      const ref = {
-        tests: [
-          { func: "return min([1,2,3,4,5]);", ans: 1 },
-          { func: "return min([5,4,3,2,1]);", ans: 1 },
-          { func: "return min([-50, -90, -20, -30, -100]);", ans: -100 },
-          { func: "return min([-1, 3, -5, 7, -9]);", ans: -9 },
-          { func: "return min([-5, -4, -3, -2, -1, 0]);", ans: -5 },
-          { func: "return min([1,2,5,3,4]);", ans: 1 },
-          { func: "return min([1,2,19,100,8,4,15,250,6]);", ans: 1 },
-          { func: "return min([34, 37, 23, 15, 28, 35]);", ans: 15 },
-          { func: "return min([0]);", ans: 0 },
-        ],
-      };
-      $("#run-tests").click(function () {
-        runtests(ref, "min");
-      });
-    </script>
-  </body>
+    <div id="tests" class="tests-cont"></div>
+  </div>
+  <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
+  <script type="text/javascript" src="js/nav.js"></script>
+  <script type="text/javascript" src="js/practice.js"></script>
+  <script>
+    var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+      lineNumbers: true,
+      theme: "default",
+      styleActiveLine: true,
+      gutters: ["CodeMirror-lint-markers"],
+      lint: true,
+      autoCloseBrackets: true,
+      matchBrackets: true,
+      extraKeys: { "Ctrl-Space": "autocomplete" },
+      mode: { name: "javascript", globalVars: false },
+    });
+    if (window.localStorage.getItem("min") != null) {
+      $("#remember-code-cont").append(
+        "<p " +
+        "style='margin: 0; padding: 5px;'>" +
+        "Your previous code was restored. " +
+        "<span id='reset-to-default' style='text-decoration: underline; " +
+        "cursor: pointer;'>Reset code to default</span>" +
+        "<img src='svg/x-icon.svg' width='16' height='16' class='fas fa-times' id='close-remember-code-cont' style='float: right; cursor: pointer;'></i></p>"
+      );
+      editor.setValue(window.localStorage.getItem("min"));
+    }
+    $("#close-remember-code-cont").click(function () {
+      $("#remember-code-cont").hide();
+    });
+    $("#reset-to-default").click(function () {
+      window.localStorage.removeItem("min");
+      location.reload();
+    });
+    editor.on("change", function (cm, change) {
+      window.localStorage.setItem("min", editor.getValue());
+    });
+  </script>
+  <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-database.js"></script>
+  <script src="js/app.js"></script>
+  <script type="text/javascript" src="js/tester.js"></script>
+  <script>
+    const ref = {
+      tests: [
+        { func: "return min([1,2,3,4,5]);", ans: 1 },
+        { func: "return min([5,4,3,2,1]);", ans: 1 },
+        { func: "return min([-50, -90, -20, -30, -100]);", ans: -100 },
+        { func: "return min([-1, 3, -5, 7, -9]);", ans: -9 },
+        { func: "return min([-5, -4, -3, -2, -1, 0]);", ans: -5 },
+        { func: "return min([1,2,5,3,4]);", ans: 1 },
+        { func: "return min([1,2,19,100,8,4,15,250,6]);", ans: 1 },
+        { func: "return min([34, 37, 23, 15, 28, 35]);", ans: 15 },
+        { func: "return min([0]);", ans: 0 },
+      ],
+    };
+    $("#run-tests").click(function () {
+      runtests(ref, "min");
+    });
+  </script>
+</body>
+
 </html>

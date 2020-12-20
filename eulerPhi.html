@@ -21,6 +21,7 @@
     <script src="addon/hint/show-hint.js"></script>
     <script src="addon/hint/javascript-hint.js"></script>
   </head>
+
   <body>
     <nav>
       <div id="nav" class="nav">
@@ -50,8 +51,12 @@
         </div>
       </div>
     </nav>
-    <div class="documentation">
-      <p>Coming soon.</p>
+    <div class="documentation-cont">
+      <div id="documentation" class="documentation">
+        <p>Coming soon.</p>
+      </div>
+      <button class="show-button" id="show-more">Show More</button>
+      <button class="show-button" id="show-less" hidden>Show Less</button>
     </div>
     <div class="code-cont">
       <textarea id="code" name="code">
@@ -74,6 +79,7 @@ function eulerPhi(n) {
   </body>
   <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
   <script type="text/javascript" src="js/nav.js"></script>
+  <script type="text/javascript" src="js/practice.js"></script>
   <script>
     var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
       lineNumbers: true,
