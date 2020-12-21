@@ -89,6 +89,11 @@
       text-decoration: underline;
     }
 
+    .table-search {
+      width: 30%;
+      margin: 10px;
+    }
+
     .difficulty {
       font-size: 75%;
       color: white;
@@ -236,6 +241,7 @@
   </div>
   <div id="completion-text"></div>
   </div>
+  <input type="text" id="table-search" class="table-search">
   <div class="cont">
     <table class="table">
       <thead>
@@ -307,7 +313,7 @@
           <td><a href="eulerPhi.html" class="table-link">EulerPhi</a></td>
           <td><span class="difficulty hard">Hard</span></td>
         </tr>
-        <tr class="load-more-1">
+        <tr>
           <td id="distinctSort-solved"><svg width="10" height="10"></svg></td>
           <td>11</td>
           <td><a href="distinctSort.html" class="table-link">DistinctSort</a></td>
@@ -321,6 +327,7 @@
   <script src="js/nav.js"></script>
   <script>
     var problems = ["sum", "product", "min", "max", "isPalindrome", "kthIndexOf", "mostFrequentInt", "isLinear", "upperCaseFirst", "eulerPhi", "distinctSort"];
+    var num_filtered = 10;
     $(document).ready(function () {
       $(".table tr").filter(":lt(11)").addClass("active");
       for (var i = 0; i < problems.length; i++) {
@@ -335,13 +342,6 @@
       } else {
         $("#progress-bar").width("0%");
         $("#completion-text").text("0.0% of problems solved");
-      }
-    });
-    $("#show-more").click(function () {
-      var current_active_index = $(".table tr").filter(".active:last").index() + 3;
-      $(".table tr").filter(":lt(" + (current_active_index + 10) + ")").addClass("active");
-      if ((current_active_index + 10) >= problems.length) {
-        $("#show-more").hide();
       }
     });
   </script>
@@ -394,6 +394,28 @@
         var temp = 0.0;
         temp = temp.toFixed(1);
         window.localStorage.setItem("percent_solved", temp);
+      }
+    });
+    jQuery.expr[':'].icontains = function(a, i, m) {
+      return jQuery(a).text().toUpperCase().indexOf(m[3].toUpperCase()) >= 0;
+    }
+    $("#show-more").click(function () {
+      num_filtered += 10;
+      $(".table tbody tr:icontains('" + $("#table-search").val() + "')").slice(0, num_filtered).addClass("active");
+      var num_found = $(".table tr:icontains('" + $("#table-search").val() + "')").length;
+      if (num_filtered >= num_found) {
+        $("#show-more").hide();
+      }
+    });
+    $("#table-search").on("input", function() {
+      num_filtered = 10;
+      $(".table tbody tr").removeClass("active");
+      var num_found = $(".table tr:icontains('" + $("#table-search").val() + "')").length;
+      $(".table tbody tr:icontains('" + $("#table-search").val() + "')").slice(0,10).addClass("active");
+      if (num_found - 1 <= 9) {
+        $("#show-more").hide();
+      } else {
+        $("#show-more").show();
       }
     });
   </script>
