@@ -29,9 +29,10 @@
       color: inherit;
     }
 
-    .cont {
+    .table-cont {
       width: 100%;
       text-align: center;
+      padding: 5px 20px;
     }
 
     .table {
@@ -90,8 +91,15 @@
     }
 
     .table-search {
-      width: 30%;
-      margin: 10px;
+      width: 35%;
+      margin-left: 20px;
+      margin-top: 15px;
+      margin-bottom: 5px;
+      padding: 7px;
+      border-radius: 4px;
+      border: 0;
+      outline: none;
+      box-shadow: 0px 7px 16px 0px rgba(0,0,0,0.2);
     }
 
     .difficulty {
@@ -166,6 +174,18 @@
     }
 
     @media only screen and (max-width: 400px) and (orientation: portrait) {
+
+      .table-cont {
+        width: 100%;
+        text-align: center;
+        padding-left: 5px;
+        padding-right: 5px;
+      }
+
+      .table-search {
+        margin-left: 5px;
+      }
+
       .completion-score {
         font-size: 16px;
       }
@@ -241,8 +261,8 @@
   </div>
   <div id="completion-text"></div>
   </div>
-  <input type="text" id="table-search" class="table-search">
-  <div class="cont">
+  <input type="text" id="table-search" class="table-search" placeholder="Search by ID, Name, or Difficulty">
+  <div class="table-cont">
     <table class="table">
       <thead>
         <tr>
@@ -401,8 +421,9 @@
     }
     $("#show-more").click(function () {
       num_filtered += 10;
-      $(".table tbody tr:icontains('" + $("#table-search").val() + "')").slice(0, num_filtered).addClass("active");
       var num_found = $(".table tr:icontains('" + $("#table-search").val() + "')").length;
+      $(".table tbody tr:icontains('" + $("#table-search").val() + "')").slice(0, num_filtered).addClass("active");
+      updateBackgroundColors();
       if (num_filtered >= num_found) {
         $("#show-more").hide();
       }
@@ -412,12 +433,22 @@
       $(".table tbody tr").removeClass("active");
       var num_found = $(".table tr:icontains('" + $("#table-search").val() + "')").length;
       $(".table tbody tr:icontains('" + $("#table-search").val() + "')").slice(0,10).addClass("active");
+      updateBackgroundColors();
       if (num_found - 1 <= 9) {
         $("#show-more").hide();
       } else {
         $("#show-more").show();
       }
     });
+    function updateBackgroundColors() {
+      $(".table tbody tr:icontains('" + $("#table-search").val() + "')").slice(0, num_filtered).each(function(i, e) {
+        if (i % 2 == 0) {
+          $(e).css("background-color", "#f2f2f2");
+        } else {
+          $(e).css("background-color", "#e6e6e6");
+        }
+      });
+    }
   </script>
 </body>
 
