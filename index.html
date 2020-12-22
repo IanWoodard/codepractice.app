@@ -90,12 +90,22 @@
       text-decoration: underline;
     }
 
+    .pre-table-cont {
+      display: flex;
+      justify-content: space-between;
+      margin-left: 20px;
+      margin-right: 20px;
+      margin-top: 15px;
+      margin-bottom: 5px;
+    }
+    
+    .table-solved-check-label, .table-solved-check {
+      align-self: center;
+    }
+
     .table-search {
       min-width: 220px;
       width: 30%;
-      margin-left: 20px;
-      margin-top: 15px;
-      margin-bottom: 5px;
       padding: 7px;
       border-radius: 4px;
       border: 0;
@@ -185,8 +195,9 @@
         padding-right: 5px;
       }
 
-      .table-search {
+      .pre-table-cont {
         margin-left: 5px;
+        margin-right: 5px;
       }
 
       .completion-score {
@@ -264,7 +275,12 @@
   </div>
   <div id="completion-text"></div>
   </div>
-  <input type="text" id="table-search" class="table-search" placeholder="Search by ID, Name, or Difficulty">
+  <div class="pre-table-cont">
+    <input type="text" id="table-search" class="table-search" placeholder="Search by ID, Name, or Difficulty">
+    <label for="table-solved-check" class="table-solved-check-label">Show Solved
+      <input type="checkbox" name="table-solved-check" id="table-solved-check" class="table-solved-check" checked>
+    </label>
+  </div>
   <div class="table-cont">
     <table class="table">
       <thead>
@@ -394,6 +410,7 @@
                   'd="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998' +
                   ' 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203' +
                   ' 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" /></svg>');
+                $("#" + problems[i] + "-solved").parent().addClass("solved");
                 problems_solved++;
               } else {
                 $("#" + problems[i] + "-solved").html('<svg width="10" height="10"></svg>');
@@ -422,10 +439,14 @@
     jQuery.expr[':'].icontains = function(a, i, m) {
       return jQuery(a).text().toUpperCase().indexOf(m[3].toUpperCase()) >= 0;
     }
+    $("#table-solved-check").change(function() {
+      $(".table tbody tr").removeClass("active");
+      filterTable();
+    });
     $("#show-more").click(function () {
       num_filtered += 10;
-      var num_found = $(".table tr:icontains('" + $("#table-search").val() + "')").length;
-      $(".table tbody tr:icontains('" + $("#table-search").val() + "')").slice(0, num_filtered).addClass("active");
+      var num_found = getNumFound();
+      filterTable();
       updateBackgroundColors();
       if (num_filtered >= num_found) {
         $("#show-more").hide();
@@ -434,8 +455,8 @@
     $("#table-search").on("input", function() {
       num_filtered = 10;
       $(".table tbody tr").removeClass("active");
-      var num_found = $(".table tr:icontains('" + $("#table-search").val() + "')").length;
-      $(".table tbody tr:icontains('" + $("#table-search").val() + "')").slice(0,10).addClass("active");
+      var num_found = getNumFound();
+      filterTable();
       updateBackgroundColors();
       if (num_found - 1 <= 9) {
         $("#show-more").hide();
@@ -443,6 +464,16 @@
         $("#show-more").show();
       }
     });
+    function getNumFound() {
+      return $(".table tr:icontains('" + $("#table-search").val() + "')").length;
+    }
+    function filterTable() {
+      if ($("#table-solved-check").is(":checked")) {
+        $(".table tbody tr:icontains('" + $("#table-search").val() + "')").slice(0, num_filtered).addClass("active");
+      } else {
+        $(".table tbody tr:not('.solved'):icontains('" + $("#table-search").val() + "')").slice(0, num_filtered).addClass("active");
+      }
+    }
     function updateBackgroundColors() {
       $(".table tbody tr:icontains('" + $("#table-search").val() + "')").slice(0, num_filtered).each(function(i, e) {
         if (i % 2 == 0) {
