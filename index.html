@@ -445,37 +445,26 @@
     });
     $("#show-more").click(function () {
       num_filtered += 10;
-      var num_found = getNumFound();
       filterTable();
-      updateBackgroundColors();
-      if (num_filtered >= num_found) {
-        $("#show-more").hide();
-      }
     });
     $("#table-search").on("input", function() {
       num_filtered = 10;
       $(".table tbody tr").removeClass("active");
-      var num_found = getNumFound();
       filterTable();
+    });
+    function filterTable() {
+      var filter = $("#table-solved-check").is(":checked") ? "" : ":not('.solved')";
+      $(".table tbody tr" + filter + ":icontains('" + $("#table-search").val() + "')").slice(0, num_filtered).addClass("active");
       updateBackgroundColors();
-      if (num_found - 1 <= 9) {
+      if (num_filtered >= $(".table tr" + filter + ":icontains('" + $("#table-search").val() + "')").length) {
         $("#show-more").hide();
       } else {
         $("#show-more").show();
       }
-    });
-    function getNumFound() {
-      return $(".table tr:icontains('" + $("#table-search").val() + "')").length;
-    }
-    function filterTable() {
-      if ($("#table-solved-check").is(":checked")) {
-        $(".table tbody tr:icontains('" + $("#table-search").val() + "')").slice(0, num_filtered).addClass("active");
-      } else {
-        $(".table tbody tr:not('.solved'):icontains('" + $("#table-search").val() + "')").slice(0, num_filtered).addClass("active");
-      }
     }
     function updateBackgroundColors() {
-      $(".table tbody tr:icontains('" + $("#table-search").val() + "')").slice(0, num_filtered).each(function(i, e) {
+      var filter = $("#table-solved-check").is(":checked") ? "" : ":not('.solved')";
+      $(".table tbody tr" + filter + ":icontains('" + $("#table-search").val() + "')").slice(0, num_filtered).each(function(i, e) {
         if (i % 2 == 0) {
           $(e).css("background-color", "#f2f2f2");
         } else {
