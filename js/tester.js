@@ -29,7 +29,6 @@ function runTestsApi(func_name) {
       .fail(function (err) {
         $("#run-loader").hide();
         $("#tests").html("<p class='failed'>Please wait before running again</p>");
-        console.log(err);
       })
       .done(function (response) {
         if (response.results.statusCode === 200) {
@@ -43,7 +42,6 @@ function runTestsApi(func_name) {
           } else {
             $("#tests").html("<p class='failed'>" + num_correct + " out of " + out_of + " passed</p>");
           }
-          console.log(num_correct + " / " + out_of);
         }
       });
   } else {
