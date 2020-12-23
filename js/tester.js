@@ -10,13 +10,50 @@ function arraysEqual(a, b) {
   return true;
 }
 
+function runTestsApi(func_name) {
+  var user = firebase.auth().currentUser;
+  if (user) {
+    var settings = {
+      url: "https://code-practice-io.herokuapp.com/api/test",
+      method: "POST",
+      timeout: 0,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: JSON.stringify({ uid: user.uid, func: func_name, code: editor.getValue() }),
+    };
+
+    $.ajax(settings)
+      .fail(function (err) {
+        $("#run-loader").hide();
+        $("#tests").html("<p class='failed'>Please wait before running again</p>");
+        console.log(err);
+      })
+      .done(function (response) {
+        if (response.results.statusCode === 200) {
+          var response_json = response.results.body;
+          response_json = JSON.parse(response_json);
+          var num_correct = response_json.num_correct;
+          var out_of = response_json.out_of;
+          $("#run-loader").hide();
+          if (num_correct === out_of) {
+            $("#tests").html("<p class='passed'>All tests passed</p>");
+          } else {
+            $("#tests").html("<p class='failed'>" + num_correct + " out of " + out_of + " passed</p>");
+          }
+          console.log(num_correct + " / " + out_of);
+        }
+      });
+  }
+}
+
 function runtests(ref, name) {
   var delay_per_test = 80;
   var delay = (ref.tests.length + 1) * delay_per_test;
   var transition_duration = delay + "ms";
   $("#progress-bar").addClass("remove-transitions");
   $("#progress-bar").removeClass("fill");
-  setTimeout(function() {
+  setTimeout(function () {
     $("#progress-bar").removeClass("remove-transitions");
     $("#progress-bar").addClass("fill");
   }, delay_per_test);
@@ -37,7 +74,7 @@ function runtests(ref, name) {
         tests_passed++;
       }
     }
-  } catch(err) {
+  } catch (err) {
     error = true;
     error_msg = err.message;
   }
@@ -52,25 +89,29 @@ function runtests(ref, name) {
     }
   }
   var user = firebase.auth().currentUser;
-  setTimeout(function() {
+  setTimeout(function () {
     if (error) {
       $("#tests").html("<p class='failed'> An exception was thrown: " + error_msg + "</p>");
     } else if (tests_passed == ref.tests.length) {
       $("#tests").html("<p class='passed'>All tests passed</p>");
       if (user) {
         $("#tests").append("<p style='font-weight: 700; margin-bottom: 0px;'>Congrats!</p>");
-        $("#tests").append("<a href='index.html' style='margin-top: 5px; text-decoration: none; color: black;'>Click here to select a new problem!</a>");
+        $("#tests").append(
+          "<a href='index.html' style='margin-top: 5px; text-decoration: none; color: black;'>Click here to select a new problem!</a>"
+        );
         addSolvedProblem(name.toString());
       } else {
         $("#tests").append("<p style='font-weight: 700; margin-bottom: 0px;'>Congrats!</p>");
         $("#tests").append("<p style='margin: 5px;'>Login to save your progress!</p>");
-        $("#tests").append("<a href='index.html' style='margin-top: 5px; text-decoration: none; color: black;'>Click here to select a new problem!</a>");
+        $("#tests").append(
+          "<a href='index.html' style='margin-top: 5px; text-decoration: none; color: black;'>Click here to select a new problem!</a>"
+        );
       }
     } else {
       $("#tests").html("<p class='failed'>" + tests_passed + " out of " + ref.tests.length + " passed</p>");
     }
   }, delay);
-  setTimeout(function() {
+  setTimeout(function () {
     $("#run-tests").prop("disabled", false);
   }, delay * 1.3);
 }

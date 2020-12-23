@@ -58,6 +58,7 @@ body {
 }
 .post-code-cont {
   width: 80%;
+  min-height: 120px;
   margin: 0 auto;
   text-align: center;
 }
@@ -75,6 +76,21 @@ body {
   height: 50px;
   font-size: 18px;
   font-weight: 700;
+}
+.run-loader {
+  width: 50px;
+  height: 50px;
+  margin: 0 auto;
+  margin-top: 10px;
+  border: 6px solid darkgrey;
+  border-top: 6px solid royalblue;
+  border-radius: 50%;
+  animation: progress-spin 0.5s linear infinite;
+}
+@keyframes progress-spin {
+  100% {
+    transform: rotate(360deg);
+  }
 }
 .test {
   font-weight: 700;

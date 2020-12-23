@@ -95,12 +95,7 @@ function sum(a, b) {
   </div>
   <div class="post-code-cont">
     <button id="run-tests">Run Tests</button>
-    <div id="progress-wrap" class="progress-wrap" hidden>
-      <div id="progress-cont" class="progress-cont">
-        <div id="progress-bar" class="progress-bar"></div>
-      </div>
-      <span>Ran <span id="ran-tests">0</span> tests</span>
-    </div>
+    <div id="run-loader" class="run-loader" hidden></div>
     <div id="tests" class="tests-cont"></div>
   </div>
 </body>
@@ -148,19 +143,8 @@ function sum(a, b) {
 <script src="js/app.js"></script>
 <script type="text/javascript" src="js/tester.js"></script>
 <script>
-  const ref = {
-    tests: [
-      { func: "return sum(1,2);", ans: 3 },
-      { func: "return sum(3,2);", ans: 5 },
-      { func: "return sum(0, 105);", ans: 105 },
-      { func: "return sum(-8, -2);", ans: -10 },
-      { func: "return sum(19, -1);", ans: 18 },
-      { func: "return sum(0, 0);", ans: 0 },
-      { func: "return sum(199, 9);", ans: 208 },
-    ],
-  };
   $("#run-tests").click(function () {
-    runtests(ref, "sum");
+    runTestsApi("sum");
   });
 </script>
 
