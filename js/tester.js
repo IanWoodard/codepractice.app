@@ -46,14 +46,16 @@ function runTestsApi(func_name) {
       })
       .always(function (response) {
         $("#run-loader").hide();
-        var error_msg = response.results.errorMessage;
-        if (error_msg != undefined) {
-          if (error_msg.includes("timed out")) {
-            $("#tests").html("<p class='failed'>Tests timed out</p>");
-          } else if (error_msg.includes("ReferenceError")) {
-            $("#tests").html("<p class='failed'>" + error_msg + "</p>");
-          } else {
-            $("#tests").html("<p class='failed'>An error was encountered</p>");
+        if (response != undefined) {
+          var error_msg = response.results.errorMessage;
+          if (error_msg != undefined) {
+            if (error_msg.includes("timed out")) {
+              $("#tests").html("<p class='failed'>Tests timed out</p>");
+            } else if (error_msg.includes("ReferenceError")) {
+              $("#tests").html("<p class='failed'>" + error_msg + "</p>");
+            } else {
+              $("#tests").html("<p class='failed'>An error was encountered</p>");
+            }
           }
         }
       });
