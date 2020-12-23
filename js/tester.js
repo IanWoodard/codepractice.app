@@ -44,7 +44,8 @@ function runTestsApi(func_name) {
         $("#run-loader").hide();
         $("#tests").html("<p class='failed'>Please wait before running again</p>");
       })
-      .always(function () {
+      .always(function (response) {
+        console.log(response);
         $("#run-loader").hide();
       });
   } else {
