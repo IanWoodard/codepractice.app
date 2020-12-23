@@ -13,6 +13,8 @@ function arraysEqual(a, b) {
 function runTestsApi(func_name) {
   var user = firebase.auth().currentUser;
   if (user) {
+    $("#tests").html("");
+    $("#run-loader").show();
     var settings = {
       url: "https://code-practice-io.herokuapp.com/api/test",
       method: "POST",
