@@ -26,6 +26,9 @@ function runTestsApi(func_name) {
     };
 
     $.ajax(settings)
+      .error(function (err) {
+        console.log(err);
+      })
       .fail(function (err) {
         $("#run-loader").hide();
         $("#tests").html("<p class='failed'>Please wait before running again</p>");
