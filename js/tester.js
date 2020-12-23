@@ -46,6 +46,8 @@ function runTestsApi(func_name) {
           console.log(num_correct + " / " + out_of);
         }
       });
+  } else {
+    $("#tests").html("<p class='failed'>Please login to run tests</p>");
   }
 }
 
