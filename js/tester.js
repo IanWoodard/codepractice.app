@@ -45,8 +45,17 @@ function runTestsApi(func_name) {
         $("#tests").html("<p class='failed'>Please wait before running again</p>");
       })
       .always(function (response) {
-        console.log(response);
         $("#run-loader").hide();
+        var error_msg = response.results.errorMessage;
+        if (error_msg != undefined) {
+          if (error_msg.includes("timed out")) {
+            $("#tests").html("<p class='failed'>Tests timed out</p>");
+          } else if (error_msg.includes("ReferenceError")) {
+            $("#tests").html("<p class='failed'>" + error_msg + "</p>");
+          } else {
+            $("#tests").html("<p class='failed'>An error was encountered</p>");
+          }
+        }
       });
   } else {
     $("#tests").html("<p class='failed'>Please login to run tests</p>");
