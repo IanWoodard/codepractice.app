@@ -26,13 +26,6 @@ function runTestsApi(func_name) {
     };
 
     $.ajax(settings)
-      .error(function (err) {
-        console.log(err);
-      })
-      .fail(function (err) {
-        $("#run-loader").hide();
-        $("#tests").html("<p class='failed'>Please wait before running again</p>");
-      })
       .done(function (response) {
         if (response.results.statusCode === 200) {
           var response_json = response.results.body;
@@ -46,6 +39,13 @@ function runTestsApi(func_name) {
             $("#tests").html("<p class='failed'>" + num_correct + " out of " + out_of + " passed</p>");
           }
         }
+      })
+      .fail(function (err) {
+        $("#run-loader").hide();
+        $("#tests").html("<p class='failed'>Please wait before running again</p>");
+      })
+      .always(function () {
+        $("#run-loader").hide();
       });
   } else {
     $("#tests").html("<p class='failed'>Please login to run tests</p>");
