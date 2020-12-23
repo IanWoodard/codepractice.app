@@ -46,7 +46,7 @@ function runTestsApi(func_name) {
       })
       .always(function (response) {
         $("#run-loader").hide();
-        if (response != undefined) {
+        if (response != undefined && response.results != undefined) {
           var error_msg = response.results.errorMessage;
           if (error_msg != undefined) {
             if (error_msg.includes("timed out")) {
