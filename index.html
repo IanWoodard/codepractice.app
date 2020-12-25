@@ -422,7 +422,7 @@
           </tr>
         </tbody>
       </table>
-      <div id="show-more">Show More</div>
+      <div id="show-more" hidden>Show More</div>
     </div>
   </div>
   <script src="js/jquery-3.5.1.min.js"></script>
@@ -435,6 +435,7 @@
       for (var i = 0; i < problems.length; i++) {
         $("#" + problems[i] + "-solve").show();
       }
+      $("#show-more").show();
       if (window.localStorage.getItem("score") != null && window.localStorage.getItem("percent_solved") != null) {
         var pre_score = window.localStorage.getItem("score");
         var pre_percent_solved = window.localStorage.getItem("percent_solved");
