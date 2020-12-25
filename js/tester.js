@@ -35,6 +35,9 @@ function runTestsApi(func_name) {
           $("#run-loader").hide();
           if (num_correct === out_of) {
             $("#tests").html("<p class='passed'>All tests passed</p>");
+            confetti.stop();
+            confetti.remove();
+            confetti.start(2500, 100, 150);
           } else {
             $("#tests").html("<p class='failed'>" + num_correct + " out of " + out_of + " passed</p>");
           }
