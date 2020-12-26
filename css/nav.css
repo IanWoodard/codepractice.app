@@ -72,6 +72,25 @@ p.name {
   height: 50px;
   text-decoration: none;
 }
+.page-container {
+  position: relative;
+  min-height: 100vh;
+}
+.content-wrapper {
+  padding-bottom: 2.5rem;
+}
+footer {
+  position: absolute;
+  bottom: 0;
+  background-color: #353541;
+  width: 100%;
+  height: 2.5rem;
+}
+footer .container {
+  padding: 0 10px;
+  width: 100%;
+  color: white;
+}
 .footer-cont {
   position: absolute;
   bottom: 0;
