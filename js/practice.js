@@ -31,7 +31,7 @@ firebase.auth().onAuthStateChanged(function (user) {
       .ref("users/" + user.uid + "/bookmarks/" + problem)
       .once("value", (snapshot) => {
         if (snapshot.val() != null) {
-          window.localStorage.setItem(problem + "-bookmark");
+          window.localStorage.setItem(problem + "-bookmark", true);
           if ($("#bookmark").attr("src") == "svg/bookmark.svg") {
             $("#bookmark").attr("src", "svg/bookmarked.svg");
           }
