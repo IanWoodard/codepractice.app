@@ -29,27 +29,29 @@ $("#bookmark").click(function () {
     }
   }
 });
-var user = firebase.auth().currentUser;
-var path = window.location.pathname;
-var problem = path.substring(1, path.indexOf("."));
-if (user) {
-  if (window.localStorage.getItem(problem + "-bookmark") != undefined) {
-    $("#bookmark").attr("src", "svg/bookmarked.svg");
+$(document).ready(function () {
+  var user = firebase.auth().currentUser;
+  var path = window.location.pathname;
+  var problem = path.substring(1, path.indexOf("."));
+  if (user) {
+    if (window.localStorage.getItem(problem + "-bookmark") != undefined) {
+      $("#bookmark").attr("src", "svg/bookmarked.svg");
+    }
+    firebase
+      .database()
+      .ref("users/" + user.uid + "/bookmarks/" + problem)
+      .once("value", (snapshot) => {
+        if (snapshot.val() != null) {
+          window.localStorage.setItem(problem + "-bookmark");
+          if ($("#bookmark").attr("src") == "svg/bookmark.svg") {
+            $("#bookmark").attr("src", "svg/bookmarked.svg");
+          }
+        } else {
+          window.localStorage.removeItem(problem + "-bookmark");
+          if ($("#bookmark").attr("src") != "svg/bookmark.svg") {
+            $("#bookmark").attr("src", "svg/bookmark.svg");
+          }
+        }
+      });
   }
-  firebase
-    .database()
-    .ref("users/" + user.uid + "/bookmarks/" + problem)
-    .once("value", (snapshot) => {
-      if (snapshot.val() != null) {
-        window.localStorage.setItem(problem + "-bookmark");
-        if ($("#bookmark").attr("src") == "svg/bookmark.svg") {
-          $("#bookmark").attr("src", "svg/bookmarked.svg");
-        }
-      } else {
-        window.localStorage.removeItem(problem + "-bookmark");
-        if ($("#bookmark").attr("src") != "svg/bookmark.svg") {
-          $("#bookmark").attr("src", "svg/bookmark.svg");
-        }
-      }
-    });
-}
+});
