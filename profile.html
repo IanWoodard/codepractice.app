@@ -87,7 +87,6 @@
         left: 0;
         overflow: auto;
         padding-top: 100px;
-        background-color: rgb(0, 0, 0);
         background-color: rgba(0, 0, 0, 0.4);
         backdrop-filter: blur(2px);
         text-align: center;
@@ -110,6 +109,38 @@
         margin-top: 60px;
         padding: 5px;
         text-align: right;
+      }
+      #file-save-button,
+      #file-cancel-button {
+        padding: 6px 12px;
+        border-radius: 2px;
+        outline: none;
+      }
+      #file-save-button {
+        margin-left: 5px;
+        color: white;
+        background-color: #337ab7;
+        border: 1.5px solid #2e6da4;
+      }
+      #file-save-button:hover {
+        background-color: #2e6da4;
+        border-color: #1861a1;
+      }
+      #file-save-button:active {
+        background-color: #337ab7;
+        border-color: #2e6da4;
+      }
+      #file-cancel-button {
+        background-color: rgb(239, 239, 239);
+        border: 1.5px solid #ccc;
+      }
+      #file-cancel-button:hover {
+        background-color: rgb(226, 226, 226);
+        border-color: #d8d8d8;
+      }
+      #file-cancel-button:active {
+        background-color: rgb(239, 239, 239);
+        border-color: #ccc;
       }
       #profile-loader span {
         display: inline-block;
