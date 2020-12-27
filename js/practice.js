@@ -1,7 +1,7 @@
 $("#bookmark").click(function () {
   var cur_user = firebase.auth().currentUser;
   var cur_path = window.location.pathname;
-  var cur_problem = cur_path.substring(1, cur_path.indexOf("."));
+  var cur_problem = cur_path.includes(".") ? cur_path.substring(1, cur_path.indexOf(".")) : cur_path.substring(1);
   if (cur_user) {
     if ($("#bookmark").attr("src") == "svg/bookmark.svg") {
       $("#bookmark").attr("src", "svg/bookmarked.svg");
@@ -21,7 +21,7 @@ $("#bookmark").click(function () {
 });
 firebase.auth().onAuthStateChanged(function (user) {
   var path = window.location.pathname;
-  var problem = path.substring(1, path.indexOf("."));
+  var problem = path.includes(".") ? path.substring(1, path.indexOf(".")) : path.substring(1);
   if (user) {
     if (window.localStorage.getItem(problem + "-bookmark") != undefined) {
       $("#bookmark").attr("src", "svg/bookmarked.svg");
