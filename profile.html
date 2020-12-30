@@ -310,7 +310,7 @@
   <script>
     var url_search = window.location.search;
     if (url_search != "") {
-      url_search = url_search.replace("?", "");
+      url_search = url_search.replace("?uid=", "");
       loadProfile(url_search, false);
     } else {
       firebase.auth().onAuthStateChanged(function (user) {
