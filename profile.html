@@ -370,7 +370,7 @@
           firebase.storage.TaskEvent.STATE_CHANGED,
           function (snapshot) { },
           function (error) {
-            console.log("error encountered while saving image");
+            console.log("error encountered while saving image: " + error);
             $("#upload-cont").hide();
             $("#file-save-button").attr("disabled", false);
             document.getElementById("upload-file-input").value = null;
