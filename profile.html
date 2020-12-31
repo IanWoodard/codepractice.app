@@ -158,6 +158,7 @@
       padding: 6px 12px;
       border-radius: 2px;
       outline: none;
+      cursor: pointer;
     }
 
     #file-save-button {
@@ -376,12 +377,8 @@
           function (snapshot) { },
           function (error) {
             console.log("error encountered while saving image");
-            //$("#upload-cont").hide();
             $("#file-save-button").attr("disabled", false);
             $("#upload-msg-cont").css("visibility", "visible");
-            //document.getElementById("upload-file-input").value = null;
-            //document.getElementById("preview-photo").removeAttribute("src");
-            //$("#upload-profile-picture").attr("disabled", false);
           },
           function () {
             uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
