@@ -13,6 +13,10 @@ function arraysEqual(a, b) {
 function runTestsApi(func_name) {
   var user = firebase.auth().currentUser;
   if (user) {
+    $("#run-tests").prop("disabled", true);
+    setTimeout(function () {
+      $("#run-tests").prop("disabled", false);
+    }, 2000);
     $("#tests").html("");
     $("#run-loader").show();
     var settings = {
