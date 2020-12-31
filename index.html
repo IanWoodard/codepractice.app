@@ -1,574 +1,571 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Code Practice</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="css/nav.css" type="text/css" />
-    <style>
-      * {
-        box-sizing: border-box;
-        font-family: "Roboto", sans-serif;
-        scroll-behavior: smooth;
+
+<head>
+  <script data-ad-client="ca-pub-1887857964946050" async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <title>Code Practice</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="css/nav.css" type="text/css" />
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Roboto", sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0px;
+      position: relative;
+      background-color: #f4f4f4;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .table-cont {
+      width: 100%;
+      text-align: center;
+      padding: 5px 20px;
+    }
+
+    .table-cont-inner {
+      width: 100%;
+      text-align: center;
+      -webkit-appearance: none;
+      -webkit-box-shadow: 0px 8px 17px 0px rgba(0, 0, 0, 0.2);
+      -moz-box-shadow: 0px 8px 17px 0px rgba(0, 0, 0, 0.2);
+      box-shadow: 0px 8px 17px 0px rgba(0, 0, 0, 0.2);
+    }
+
+    .table {
+      font-style: normal;
+      font-weight: 300;
+      font-size: 1.4rem;
+      line-height: 2rem;
+      letter-spacing: 0.01rem;
+      color: #212121;
+      background-color: #f5f5f5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+      width: 100%;
+      max-width: 100%;
+      border-collapse: collapse;
+    }
+
+    .table tbody tr:nth-child(odd) {
+      background-color: #f2f2f2;
+    }
+
+    .table tbody tr:nth-child(even) {
+      background-color: #e6e6e6;
+    }
+
+    .table thead tr {
+      border-top: 1px solid grey;
+      border-bottom: 1px solid grey;
+    }
+
+    .table tr {
+      display: none;
+      border-left: 1px solid grey;
+      border-right: 1px solid grey;
+    }
+
+    .table tr.active {
+      display: table-row;
+    }
+
+    .table tbody tr.active {
+      -webkit-appearance: none;
+      -webkit-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2) inset;
+      -moz-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2) inset;
+      box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2) inset;
+    }
+
+    .table tbody tr.active:hover {
+      background-color: rgba(130, 190, 254, 0.35) !important;
+    }
+
+    .table tbody tr.active.solved:hover {
+      background-color: rgb(150, 206, 150, 0.35) !important;
+    }
+
+    .table td {
+      text-align: left;
+    }
+
+    .table td:first-child {
+      width: 10px;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    .table thead {
+      background-color: #cccccc;
+    }
+
+    .table tbody {
+      background-color: white;
+      border-bottom: 1px solid grey;
+    }
+
+    .table-link {
+      color: blue;
+      text-decoration: underline;
+    }
+
+    .pre-table-cont {
+      display: flex;
+      justify-content: space-between;
+      margin-left: 20px;
+      margin-right: 20px;
+      margin-top: 15px;
+      margin-bottom: 5px;
+    }
+
+    .table-solved-check-label,
+    .table-solved-check {
+      align-self: center;
+    }
+
+    .table-search {
+      min-width: 220px;
+      width: 30%;
+      padding: 7px;
+      border-radius: 4px;
+      border: 1px solid white;
+      outline: none;
+      -webkit-appearance: none;
+      -webkit-box-shadow: 0px 7px 16px 0px rgba(0, 0, 0, 0.2);
+      -moz-box-shadow: 0px 7px 16px 0px rgba(0, 0, 0, 0.2);
+      box-shadow: 0px 7px 16px 0px rgba(0, 0, 0, 0.2);
+    }
+
+    .table-search:focus {
+      border: 1px solid rgb(130, 190, 254);
+    }
+
+    .difficulty {
+      font-size: 75%;
+      color: white;
+      padding: 3px 5px;
+      border-radius: 4px;
+    }
+
+    .easy {
+      background-color: green;
+    }
+
+    .medium {
+      background-color: orange;
+    }
+
+    .hard {
+      background-color: red;
+    }
+
+    .completion {
+      margin-top: 70px;
+      width: 100%;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .completion-score {
+      margin-top: 70px;
+      font-size: 20px;
+      width: 100%;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .progress-cont {
+      width: 300px;
+      background: #e0e2e4;
+      height: 20px;
+      margin: 0 auto;
+      margin-bottom: 5px;
+      border-radius: 3px;
+      -webkit-appearance: none;
+      -webkit-box-shadow: 0px 3px 7px 0px rgba(0, 0, 0, 0.2);
+      -moz-box-shadow: 0px 3px 7px 0px rgba(0, 0, 0, 0.2);
+      box-shadow: 0px 3px 7px 0px rgba(0, 0, 0, 0.2);
+    }
+
+    .progress-inner {
+      width: 0%;
+      height: 20px;
+      background: skyblue;
+      border-radius: 3px;
+      transition: width 500ms;
+      -webkit-appearance: none;
+      -webkit-box-shadow: 0px 1px 7px 0px skyblue;
+      -moz-box-shadow: 0px 1px 7px 0px skyblue;
+      box-shadow: 0px 1px 7px 0px skyblue;
+    }
+
+    #completion-text {
+      height: 18px;
+      font-size: 16px;
+      text-align: center;
+      margin-bottom: 6px;
+    }
+
+    #show-more {
+      font-size: 20px;
+      width: 100%;
+      background-color: #cccccc;
+      padding-top: 6px;
+      padding-bottom: 6px;
+      text-align: center;
+      cursor: pointer;
+      border: 1px solid grey;
+      border-top: 0;
+    }
+
+    #show-more:hover {
+      background-color: rgb(180, 180, 180);
+    }
+
+    @media only screen and (max-width: 400px) and (orientation: portrait) {
+      .pre-table-cont {
+        margin-left: 5px;
+        margin-right: 5px;
       }
 
-      body {
-        margin: 0px;
-        position: relative;
-        background-color: #f4f4f4;
+      .table-solved-check-label {
+        font-size: 12px;
       }
 
-      a {
-        text-decoration: none;
-        color: inherit;
+      .table-search {
+        font-size: 12px;
+        min-width: 200px;
       }
 
       .table-cont {
         width: 100%;
         text-align: center;
-        padding: 5px 20px;
+        padding-left: 5px;
+        padding-right: 5px;
       }
 
-      .table-cont-inner {
-        width: 100%;
-        text-align: center;
-        -webkit-appearance: none;
-        -webkit-box-shadow: 0px 8px 17px 0px rgba(0, 0, 0, 0.2);
-        -moz-box-shadow: 0px 8px 17px 0px rgba(0, 0, 0, 0.2);
-        box-shadow: 0px 8px 17px 0px rgba(0, 0, 0, 0.2);
+      .completion-score {
+        font-size: 16px;
+      }
+
+      .progress-cont {
+        width: 200px;
+        height: 15px;
+      }
+
+      .progress-inner {
+        height: 15px;
+      }
+
+      #completion-text {
+        height: 14px;
+        font-size: 12px;
       }
 
       .table {
-        font-style: normal;
-        font-weight: 300;
-        font-size: 1.4rem;
-        line-height: 2rem;
-        letter-spacing: 0.01rem;
-        color: #212121;
-        background-color: #f5f5f5;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        text-rendering: optimizeLegibility;
-        width: 100%;
-        max-width: 100%;
-        border-collapse: collapse;
-      }
-
-      .table tbody tr:nth-child(odd) {
-        background-color: #f2f2f2;
-      }
-
-      .table tbody tr:nth-child(even) {
-        background-color: #e6e6e6;
-      }
-
-      .table thead tr {
-        border-top: 1px solid grey;
-        border-bottom: 1px solid grey;
-      }
-
-      .table tr {
-        display: none;
-        border-left: 1px solid grey;
-        border-right: 1px solid grey;
-      }
-
-      .table tr.active {
-        display: table-row;
-      }
-
-      .table tbody tr.active {
-        -webkit-appearance: none;
-        -webkit-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2) inset;
-        -moz-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2) inset;
-        box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2) inset;
-      }
-
-      .table tbody tr.active:hover {
-        background-color: rgba(130, 190, 254, 0.35) !important;
-      }
-
-      .table tbody tr.active.solved:hover {
-        background-color: rgb(150, 206, 150, 0.35) !important;
-      }
-
-      .table td {
-        text-align: left;
-      }
-
-      .table td:first-child {
-        width: 10px;
-        padding-left: 10px;
-        padding-right: 10px;
-      }
-
-      .table thead {
-        background-color: #cccccc;
-      }
-
-      .table tbody {
-        background-color: white;
-        border-bottom: 1px solid grey;
-      }
-
-      .table-link {
-        color: blue;
-        text-decoration: underline;
-      }
-
-      .pre-table-cont {
-        display: flex;
-        justify-content: space-between;
-        margin-left: 20px;
-        margin-right: 20px;
-        margin-top: 15px;
-        margin-bottom: 5px;
-      }
-
-      .table-solved-check-label,
-      .table-solved-check {
-        align-self: center;
-      }
-
-      .table-search {
-        min-width: 220px;
-        width: 30%;
-        padding: 7px;
-        border-radius: 4px;
-        border: 1px solid white;
-        outline: none;
-        -webkit-appearance: none;
-        -webkit-box-shadow: 0px 7px 16px 0px rgba(0, 0, 0, 0.2);
-        -moz-box-shadow: 0px 7px 16px 0px rgba(0, 0, 0, 0.2);
-        box-shadow: 0px 7px 16px 0px rgba(0, 0, 0, 0.2);
-      }
-
-      .table-search:focus {
-        border: 1px solid rgb(130, 190, 254);
+        font-size: 1.2rem;
       }
 
       .difficulty {
-        font-size: 75%;
+        font-size: 70%;
         color: white;
         padding: 3px 5px;
         border-radius: 4px;
       }
+    }
+  </style>
+</head>
 
-      .easy {
-        background-color: green;
-      }
-
-      .medium {
-        background-color: orange;
-      }
-
-      .hard {
-        background-color: red;
-      }
-
-      .completion {
-        margin-top: 70px;
-        width: 100%;
-        text-align: center;
-        margin-bottom: 10px;
-      }
-
-      .completion-score {
-        margin-top: 70px;
-        font-size: 20px;
-        width: 100%;
-        text-align: center;
-        margin-bottom: 10px;
-      }
-
-      .progress-cont {
-        width: 300px;
-        background: #e0e2e4;
-        height: 20px;
-        margin: 0 auto;
-        margin-bottom: 5px;
-        border-radius: 3px;
-        -webkit-appearance: none;
-        -webkit-box-shadow: 0px 3px 7px 0px rgba(0, 0, 0, 0.2);
-        -moz-box-shadow: 0px 3px 7px 0px rgba(0, 0, 0, 0.2);
-        box-shadow: 0px 3px 7px 0px rgba(0, 0, 0, 0.2);
-      }
-
-      .progress-inner {
-        width: 0%;
-        height: 20px;
-        background: skyblue;
-        border-radius: 3px;
-        transition: width 500ms;
-        -webkit-appearance: none;
-        -webkit-box-shadow: 0px 1px 7px 0px skyblue;
-        -moz-box-shadow: 0px 1px 7px 0px skyblue;
-        box-shadow: 0px 1px 7px 0px skyblue;
-      }
-
-      #completion-text {
-        height: 18px;
-        font-size: 16px;
-        text-align: center;
-        margin-bottom: 6px;
-      }
-
-      #show-more {
-        font-size: 20px;
-        width: 100%;
-        background-color: #cccccc;
-        padding-top: 6px;
-        padding-bottom: 6px;
-        text-align: center;
-        cursor: pointer;
-        border: 1px solid grey;
-        border-top: 0;
-      }
-
-      #show-more:hover {
-        background-color: rgb(180, 180, 180);
-      }
-
-      @media only screen and (max-width: 400px) and (orientation: portrait) {
-        .pre-table-cont {
-          margin-left: 5px;
-          margin-right: 5px;
-        }
-
-        .table-solved-check-label {
-          font-size: 12px;
-        }
-
-        .table-search {
-          font-size: 12px;
-          min-width: 200px;
-        }
-
-        .table-cont {
-          width: 100%;
-          text-align: center;
-          padding-left: 5px;
-          padding-right: 5px;
-        }
-
-        .completion-score {
-          font-size: 16px;
-        }
-
-        .progress-cont {
-          width: 200px;
-          height: 15px;
-        }
-
-        .progress-inner {
-          height: 15px;
-        }
-
-        #completion-text {
-          height: 14px;
-          font-size: 12px;
-        }
-
-        .table {
-          font-size: 1.2rem;
-        }
-
-        .difficulty {
-          font-size: 70%;
-          color: white;
-          padding: 3px 5px;
-          border-radius: 4px;
-        }
-      }
-    </style>
-  </head>
-
-  <body>
-    <nav>
-      <div id="nav" class="nav">
-        <ul>
-          <li>
-            <a href="javascript:void(0)" class="nav-a" draggable="false">Practice</a>
-          </li>
-          <li>
-            <a href="leaderboard.html" class="nav-a" draggable="false">Leaderboard</a>
-          </li>
-          <li id="profile" style="display: none">
-            <a href="profile.html" class="nav-a" draggable="false">Profile</a>
-          </li>
-          <li id="login">
-            <a href="#" onclick="return logInGoogle();" class="nav-a" draggable="false">Login</a>
-          </li>
-          <li id="logout" style="display: none">
-            <a href="#" onclick="return logOutGoogle();" class="nav-a" draggable="false">Logout</a>
-          </li>
-          <li class="navname">
-            <p class="name">Code Practice</p>
-          </li>
-        </ul>
-      </div>
-      <div class="navbar-cont">
-        <div class="navbar-hamburger-menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-        <div class="navbarname">
+<body>
+  <nav>
+    <div id="nav" class="nav">
+      <ul>
+        <li>
+          <a href="javascript:void(0)" class="nav-a" draggable="false">Practice</a>
+        </li>
+        <li>
+          <a href="leaderboard.html" class="nav-a" draggable="false">Leaderboard</a>
+        </li>
+        <li id="profile" style="display: none">
+          <a href="profile.html" class="nav-a" draggable="false">Profile</a>
+        </li>
+        <li id="login">
+          <a href="#" onclick="return logInGoogle();" class="nav-a" draggable="false">Login</a>
+        </li>
+        <li id="logout" style="display: none">
+          <a href="#" onclick="return logOutGoogle();" class="nav-a" draggable="false">Logout</a>
+        </li>
+        <li class="navname">
           <p class="name">Code Practice</p>
-        </div>
-      </div>
-    </nav>
-    <div class="page-container">
-      <div class="content-wrapper">
-        <div class="completion">
-          <p class="completion-score">Score: <span id="score">0</span></p>
-        </div>
-
-        <div class="progress-cont">
-          <div id="progress-bar" class="progress-inner"></div>
-        </div>
-        <div id="completion-text">0.0% of problems solved</div>
-        <div class="pre-table-cont">
-          <input type="text" id="table-search" class="table-search" placeholder="Search by ID, Name, or Difficulty" />
-          <label for="table-solved-check" class="table-solved-check-label"
-            >Show Solved
-            <input
-              type="checkbox"
-              name="table-solved-check"
-              id="table-solved-check"
-              class="table-solved-check"
-              checked
-            />
-          </label>
-        </div>
-        <div class="table-cont">
-          <div class="table-cont-inner">
-            <table class="table">
-              <thead>
-                <tr>
-                  <td></td>
-                  <td>ID</td>
-                  <td>Name</td>
-                  <td>Difficulty</td>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td id="sum-solved"><svg width="10" height="10"></svg></td>
-                  <td>1</td>
-                  <td><a href="sum.html" class="table-link">Sum</a></td>
-                  <td><span class="difficulty easy">Easy</span></td>
-                </tr>
-                <tr>
-                  <td id="product-solved"><svg width="10" height="10"></svg></td>
-                  <td>2</td>
-                  <td><a href="product.html" class="table-link">Product</a></td>
-                  <td><span class="difficulty easy">Easy</span></td>
-                </tr>
-                <tr>
-                  <td id="min-solved"><svg width="10" height="10"></svg></td>
-                  <td>3</td>
-                  <td><a href="min.html" class="table-link">Min</a></td>
-                  <td><span class="difficulty easy">Easy</span></td>
-                </tr>
-                <tr>
-                  <td id="max-solved"><svg width="10" height="10"></svg></td>
-                  <td>4</td>
-                  <td><a href="max.html" class="table-link">Max</a></td>
-                  <td><span class="difficulty easy">Easy</span></td>
-                </tr>
-                <tr>
-                  <td id="isPalindrome-solved"><svg width="10" height="10"></svg></td>
-                  <td>5</td>
-                  <td><a href="ispalindrome.html" class="table-link">IsPalindrome</a></td>
-                  <td><span class="difficulty medium">Medium</span></td>
-                </tr>
-                <tr>
-                  <td id="kthIndexOf-solved"><svg width="10" height="10"></svg></td>
-                  <td>6</td>
-                  <td><a href="kthindexof.html" class="table-link">KthIndexOf</a></td>
-                  <td><span class="difficulty easy">Easy</span></td>
-                </tr>
-                <tr>
-                  <td id="mostFrequentInt-solved"><svg width="10" height="10"></svg></td>
-                  <td>7</td>
-                  <td><a href="mostfrequentint.html" class="table-link">MostFrequentInt</a></td>
-                  <td><span class="difficulty medium">Medium</span></td>
-                </tr>
-                <tr>
-                  <td id="isLinear-solved"><svg width="10" height="10"></svg></td>
-                  <td>8</td>
-                  <td><a href="islinear.html" class="table-link">IsLinear</a></td>
-                  <td><span class="difficulty medium">Medium</span></td>
-                </tr>
-                <tr>
-                  <td id="upperCaseFirst-solved"><svg width="10" height="10"></svg></td>
-                  <td>9</td>
-                  <td><a href="uppercasefirst.html" class="table-link">UpperCaseFirst</a></td>
-                  <td><span class="difficulty easy">Easy</span></td>
-                </tr>
-                <tr>
-                  <td id="eulerPhi-solved"><svg width="10" height="10"></svg></td>
-                  <td>10</td>
-                  <td><a href="eulerphi.html" class="table-link">EulerPhi</a></td>
-                  <td><span class="difficulty hard">Hard</span></td>
-                </tr>
-                <tr>
-                  <td id="distinctSort-solved"><svg width="10" height="10"></svg></td>
-                  <td>11</td>
-                  <td><a href="distinctsort.html" class="table-link">DistinctSort</a></td>
-                  <td><span class="difficulty medium">Medium</span></td>
-                </tr>
-                <tr>
-                  <td id="isBetween-solved"><svg width="10" height="10"></svg></td>
-                  <td>12</td>
-                  <td><a href="isbetween.html" class="table-link">IsBetween</a></td>
-                  <td><span class="difficulty easy">Easy</span></td>
-                </tr>
-              </tbody>
-            </table>
-            <div id="show-more" hidden>Show More</div>
-          </div>
-        </div>
-      </div>
-      <footer>
-        <div class="container">
-          <p>©2020 CodePractice</p>
-        </div>
-      </footer>
+        </li>
+      </ul>
     </div>
-    <script src="js/jquery-3.5.1.min.js"></script>
-    <script src="js/nav.js"></script>
-    <script>
-      var problems = [
-        "sum",
-        "product",
-        "min",
-        "max",
-        "isPalindrome",
-        "kthIndexOf",
-        "mostFrequentInt",
-        "isLinear",
-        "upperCaseFirst",
-        "eulerPhi",
-        "distinctSort",
-        "isBetween",
-      ];
-      var num_filtered = 10;
-      $(document).ready(function () {
-        $(".table tr").filter(":lt(11)").addClass("active");
-        for (var i = 0; i < problems.length; i++) {
-          $("#" + problems[i] + "-solve").show();
-        }
-        $("#show-more").show();
-        if (window.localStorage.getItem("score") != null && window.localStorage.getItem("percent_solved") != null) {
-          var pre_score = window.localStorage.getItem("score");
-          var pre_percent_solved = window.localStorage.getItem("percent_solved");
-          $("#score").text(pre_score);
-          $("#progress-bar").width(pre_percent_solved + "%");
-          $("#completion-text").text(pre_percent_solved + "% of problems solved");
-        } else {
-          $("#progress-bar").width("0%");
-          $("#completion-text").text("0.0% of problems solved");
-        }
-      });
-    </script>
-    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-analytics.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-database.js"></script>
-    <script src="js/app.js"></script>
-    <script>
-      firebase.auth().onAuthStateChanged(function (user) {
-        if (user) {
-          var score_ref = firebase.database().ref("users/" + user.uid);
-          score_ref.once("value", (snapshot) => {
-            var score_val = snapshot.val()["numSolved"].count;
-            $("#score").text(score_val);
-            window.localStorage.setItem("score", score_val);
-          });
-          var problems_list = firebase.database().ref("users/" + user.uid + "/problems");
-          var problems_solved = 0;
-          problems_list.once("value", (snapshot) => {
-            const data = snapshot.val();
-            if (data != null) {
-              for (var i = 0; i < problems.length; i++) {
-                if (data[problems[i]] != undefined) {
-                  $("#" + problems[i] + "-solved").html(
-                    '<svg viewBox="0 0 512 512" width="10" title="check">' +
-                      '<path fill="green" ' +
-                      'd="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998' +
-                      " 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203" +
-                      ' 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" /></svg>'
-                  );
-                  $("#" + problems[i] + "-solved")
-                    .parent()
-                    .addClass("solved");
-                  problems_solved++;
-                } else {
-                  $("#" + problems[i] + "-solved").html('<svg width="10" height="10"></svg>');
-                }
+    <div class="navbar-cont">
+      <div class="navbar-hamburger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="navbarname">
+        <p class="name">Code Practice</p>
+      </div>
+    </div>
+  </nav>
+  <div class="page-container">
+    <div class="content-wrapper">
+      <div class="completion">
+        <p class="completion-score">Score: <span id="score">0</span></p>
+      </div>
+
+      <div class="progress-cont">
+        <div id="progress-bar" class="progress-inner"></div>
+      </div>
+      <div id="completion-text">0.0% of problems solved</div>
+      <div class="pre-table-cont">
+        <input type="text" id="table-search" class="table-search" placeholder="Search by ID, Name, or Difficulty" />
+        <label for="table-solved-check" class="table-solved-check-label">Show Solved
+          <input type="checkbox" name="table-solved-check" id="table-solved-check" class="table-solved-check" checked />
+        </label>
+      </div>
+      <div class="table-cont">
+        <div class="table-cont-inner">
+          <table class="table">
+            <thead>
+              <tr>
+                <td></td>
+                <td>ID</td>
+                <td>Name</td>
+                <td>Difficulty</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td id="sum-solved"><svg width="10" height="10"></svg></td>
+                <td>1</td>
+                <td><a href="sum.html" class="table-link">Sum</a></td>
+                <td><span class="difficulty easy">Easy</span></td>
+              </tr>
+              <tr>
+                <td id="product-solved"><svg width="10" height="10"></svg></td>
+                <td>2</td>
+                <td><a href="product.html" class="table-link">Product</a></td>
+                <td><span class="difficulty easy">Easy</span></td>
+              </tr>
+              <tr>
+                <td id="min-solved"><svg width="10" height="10"></svg></td>
+                <td>3</td>
+                <td><a href="min.html" class="table-link">Min</a></td>
+                <td><span class="difficulty easy">Easy</span></td>
+              </tr>
+              <tr>
+                <td id="max-solved"><svg width="10" height="10"></svg></td>
+                <td>4</td>
+                <td><a href="max.html" class="table-link">Max</a></td>
+                <td><span class="difficulty easy">Easy</span></td>
+              </tr>
+              <tr>
+                <td id="isPalindrome-solved"><svg width="10" height="10"></svg></td>
+                <td>5</td>
+                <td><a href="ispalindrome.html" class="table-link">IsPalindrome</a></td>
+                <td><span class="difficulty medium">Medium</span></td>
+              </tr>
+              <tr>
+                <td id="kthIndexOf-solved"><svg width="10" height="10"></svg></td>
+                <td>6</td>
+                <td><a href="kthindexof.html" class="table-link">KthIndexOf</a></td>
+                <td><span class="difficulty easy">Easy</span></td>
+              </tr>
+              <tr>
+                <td id="mostFrequentInt-solved"><svg width="10" height="10"></svg></td>
+                <td>7</td>
+                <td><a href="mostfrequentint.html" class="table-link">MostFrequentInt</a></td>
+                <td><span class="difficulty medium">Medium</span></td>
+              </tr>
+              <tr>
+                <td id="isLinear-solved"><svg width="10" height="10"></svg></td>
+                <td>8</td>
+                <td><a href="islinear.html" class="table-link">IsLinear</a></td>
+                <td><span class="difficulty medium">Medium</span></td>
+              </tr>
+              <tr>
+                <td id="upperCaseFirst-solved"><svg width="10" height="10"></svg></td>
+                <td>9</td>
+                <td><a href="uppercasefirst.html" class="table-link">UpperCaseFirst</a></td>
+                <td><span class="difficulty easy">Easy</span></td>
+              </tr>
+              <tr>
+                <td id="eulerPhi-solved"><svg width="10" height="10"></svg></td>
+                <td>10</td>
+                <td><a href="eulerphi.html" class="table-link">EulerPhi</a></td>
+                <td><span class="difficulty hard">Hard</span></td>
+              </tr>
+              <tr>
+                <td id="distinctSort-solved"><svg width="10" height="10"></svg></td>
+                <td>11</td>
+                <td><a href="distinctsort.html" class="table-link">DistinctSort</a></td>
+                <td><span class="difficulty medium">Medium</span></td>
+              </tr>
+              <tr>
+                <td id="isBetween-solved"><svg width="10" height="10"></svg></td>
+                <td>12</td>
+                <td><a href="isbetween.html" class="table-link">IsBetween</a></td>
+                <td><span class="difficulty easy">Easy</span></td>
+              </tr>
+            </tbody>
+          </table>
+          <div id="show-more" hidden>Show More</div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <div class="container">
+        <p>©2020 CodePractice</p>
+      </div>
+    </footer>
+  </div>
+  <script src="js/jquery-3.5.1.min.js"></script>
+  <script src="js/nav.js"></script>
+  <script>
+    var problems = [
+      "sum",
+      "product",
+      "min",
+      "max",
+      "isPalindrome",
+      "kthIndexOf",
+      "mostFrequentInt",
+      "isLinear",
+      "upperCaseFirst",
+      "eulerPhi",
+      "distinctSort",
+      "isBetween",
+    ];
+    var num_filtered = 10;
+    $(document).ready(function () {
+      $(".table tr").filter(":lt(11)").addClass("active");
+      for (var i = 0; i < problems.length; i++) {
+        $("#" + problems[i] + "-solve").show();
+      }
+      $("#show-more").show();
+      if (window.localStorage.getItem("score") != null && window.localStorage.getItem("percent_solved") != null) {
+        var pre_score = window.localStorage.getItem("score");
+        var pre_percent_solved = window.localStorage.getItem("percent_solved");
+        $("#score").text(pre_score);
+        $("#progress-bar").width(pre_percent_solved + "%");
+        $("#completion-text").text(pre_percent_solved + "% of problems solved");
+      } else {
+        $("#progress-bar").width("0%");
+        $("#completion-text").text("0.0% of problems solved");
+      }
+    });
+  </script>
+  <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-database.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        var score_ref = firebase.database().ref("users/" + user.uid);
+        score_ref.once("value", (snapshot) => {
+          var score_val = snapshot.val()["numSolved"].count;
+          $("#score").text(score_val);
+          window.localStorage.setItem("score", score_val);
+        });
+        var problems_list = firebase.database().ref("users/" + user.uid + "/problems");
+        var problems_solved = 0;
+        problems_list.once("value", (snapshot) => {
+          const data = snapshot.val();
+          if (data != null) {
+            for (var i = 0; i < problems.length; i++) {
+              if (data[problems[i]] != undefined) {
+                $("#" + problems[i] + "-solved").html(
+                  '<svg viewBox="0 0 512 512" width="10" title="check">' +
+                  '<path fill="green" ' +
+                  'd="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998' +
+                  " 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203" +
+                  ' 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" /></svg>'
+                );
+                $("#" + problems[i] + "-solved")
+                  .parent()
+                  .addClass("solved");
+                problems_solved++;
+              } else {
+                $("#" + problems[i] + "-solved").html('<svg width="10" height="10"></svg>');
               }
-              var percent = (problems_solved / problems.length) * 100;
-              percent = percent.toFixed(1);
-              $("#progress-bar").width(percent + "%");
-              $("#completion-text").text(percent + "% of problems solved");
-              window.localStorage.setItem("percent_solved", percent);
             }
-          });
-        } else {
-          for (var i = 0; i < problems.length; i++) {
-            $("#" + problems[i] + "-solved").html('<svg width="10" height="10"></svg>');
+            var percent = (problems_solved / problems.length) * 100;
+            percent = percent.toFixed(1);
+            $("#progress-bar").width(percent + "%");
+            $("#completion-text").text(percent + "% of problems solved");
+            window.localStorage.setItem("percent_solved", percent);
           }
-          $("#score").text("0");
-          $("#progress-bar").width("0.0%");
-          $("#completion-text").text("0.0% of problems solved");
-          window.localStorage.setItem("score", 0);
-          var temp = 0.0;
-          temp = temp.toFixed(1);
-          window.localStorage.setItem("percent_solved", temp);
+        });
+      } else {
+        for (var i = 0; i < problems.length; i++) {
+          $("#" + problems[i] + "-solved").html('<svg width="10" height="10"></svg>');
         }
-      });
-      jQuery.expr[":"].icontains = function (a, i, m) {
-        return jQuery(a).text().toUpperCase().indexOf(m[3].toUpperCase()) >= 0;
-      };
-      $("#table-solved-check").change(function () {
-        $(".table tbody tr").removeClass("active");
-        filterTable();
-      });
-      $("#show-more").click(function () {
-        num_filtered += 10;
-        filterTable();
-      });
-      $("#table-search").on("input", function () {
-        num_filtered = 10;
-        $(".table tbody tr").removeClass("active");
-        filterTable();
-      });
-      function filterTable() {
-        var filter = $("#table-solved-check").is(":checked") ? "" : ":not('.solved')";
-        $(".table tbody tr" + filter + ":icontains('" + $("#table-search").val() + "')")
-          .slice(0, num_filtered)
-          .addClass("active");
-        updateBackgroundColors();
-        if (num_filtered >= $(".table tr" + filter + ":icontains('" + $("#table-search").val() + "')").length) {
-          $("#show-more").hide();
-        } else {
-          $("#show-more").show();
-        }
+        $("#score").text("0");
+        $("#progress-bar").width("0.0%");
+        $("#completion-text").text("0.0% of problems solved");
+        window.localStorage.setItem("score", 0);
+        var temp = 0.0;
+        temp = temp.toFixed(1);
+        window.localStorage.setItem("percent_solved", temp);
       }
-      function updateBackgroundColors() {
-        var filter = $("#table-solved-check").is(":checked") ? "" : ":not('.solved')";
-        $(".table tbody tr" + filter + ":icontains('" + $("#table-search").val() + "')")
-          .slice(0, num_filtered)
-          .each(function (i, e) {
-            if (i % 2 == 0) {
-              $(e).css("background-color", "#f2f2f2");
-            } else {
-              $(e).css("background-color", "#e6e6e6");
-            }
-          });
+    });
+    jQuery.expr[":"].icontains = function (a, i, m) {
+      return jQuery(a).text().toUpperCase().indexOf(m[3].toUpperCase()) >= 0;
+    };
+    $("#table-solved-check").change(function () {
+      $(".table tbody tr").removeClass("active");
+      filterTable();
+    });
+    $("#show-more").click(function () {
+      num_filtered += 10;
+      filterTable();
+    });
+    $("#table-search").on("input", function () {
+      num_filtered = 10;
+      $(".table tbody tr").removeClass("active");
+      filterTable();
+    });
+    function filterTable() {
+      var filter = $("#table-solved-check").is(":checked") ? "" : ":not('.solved')";
+      $(".table tbody tr" + filter + ":icontains('" + $("#table-search").val() + "')")
+        .slice(0, num_filtered)
+        .addClass("active");
+      updateBackgroundColors();
+      if (num_filtered >= $(".table tr" + filter + ":icontains('" + $("#table-search").val() + "')").length) {
+        $("#show-more").hide();
+      } else {
+        $("#show-more").show();
       }
-    </script>
-  </body>
+    }
+    function updateBackgroundColors() {
+      var filter = $("#table-solved-check").is(":checked") ? "" : ":not('.solved')";
+      $(".table tbody tr" + filter + ":icontains('" + $("#table-search").val() + "')")
+        .slice(0, num_filtered)
+        .each(function (i, e) {
+          if (i % 2 == 0) {
+            $(e).css("background-color", "#f2f2f2");
+          } else {
+            $(e).css("background-color", "#e6e6e6");
+          }
+        });
+    }
+  </script>
+</body>
+
 </html>
