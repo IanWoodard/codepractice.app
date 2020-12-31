@@ -8,6 +8,10 @@ body {
   margin: 0;
   background-color: #f8f8f8;
 }
+a {
+  text-decoration: none;
+  color: inherit;
+}
 .documentation-cont {
   margin: 0 auto;
   margin-top: 70px;
