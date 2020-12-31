@@ -20,6 +20,10 @@ body {
   height: 30px;
   border: 0;
   outline: none;
+  cursor: pointer;
+}
+.show-button:hover {
+  background-color: rgb(227, 227, 227);
 }
 .documentation {
   width: 100%;
