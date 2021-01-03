@@ -178,24 +178,8 @@ function isPalindrome(str) {
 <script type="text/javascript" src="js/tester.js"></script>
 <script src="js/confetti.min.js"></script>
 <script>
-  const ref = {
-    tests: [
-      { func: "return isPalindrome('hello');", ans: false },
-      { func: "return isPalindrome('anna');", ans: true },
-      { func: "return isPalindrome('abcdcba');", ans: true },
-      { func: "return isPalindrome('abcdcab');", ans: false },
-      { func: "return isPalindrome('stats');", ans: true },
-      { func: "return isPalindrome('stat');", ans: false },
-      { func: "return isPalindrome('height');", ans: false },
-      { func: "return isPalindrome('late');", ans: false },
-      { func: "return isPalindrome('Straw warts');", ans: true },
-      { func: "return isPalindrome('my me my me');", ans: false },
-      { func: "return isPalindrome('she sells sea shells by the sea shore');", ans: false },
-      { func: "return isPalindrome('a man a plan a canal panama');", ans: true },
-    ],
-  };
   $("#run-tests").click(function () {
-    runtests(ref, "isPalindrome");
+    runTestsApi("isPalindrome");
   });
 </script>
 

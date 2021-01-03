@@ -191,23 +191,8 @@ function kthIndexOf(arr, k, num) {
 <script type="text/javascript" src="js/tester.js"></script>
 <script src="js/confetti.min.js"></script>
 <script>
-  const ref = {
-    tests: [
-      { func: "return kthIndexOf([5, 4, 3, 2, 4], 2, 4);", ans: 4 },
-      { func: "return kthIndexOf([5, 4, 3, 2, 4], 3, 4);", ans: -1 },
-      {
-        func: "return kthIndexOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10," + "11, 12, 13, 14, 15, 16, 0], 2, 0);",
-        ans: 17,
-      },
-      { func: "return kthIndexOf([0, 1, 0, 1, 0, 1, 0, 1, 0, 1], 4, 1);", ans: 7 },
-      { func: "return kthIndexOf([15, 14, 12, 19, 3, 4], 1, 19);", ans: 3 },
-      { func: "return kthIndexOf([1, 1, 1, 1, 1], 6, 1);", ans: -1 },
-      { func: "return kthIndexOf([3, 3, 3, 3, 3], 5, 3);", ans: 4 },
-      { func: "return kthIndexOf([1], 4, 3);", ans: -1 },
-    ],
-  };
   $("#run-tests").click(function () {
-    runtests(ref, "kthIndexOf");
+    runTestsApi("kthIndexOf");
   });
 </script>
 
