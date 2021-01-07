@@ -90,8 +90,8 @@
   <div class="page-container">
     <div class="content-cont">
       <h1>Request to view/edit/delete your personal information stored on the site.</h1>
-      <form name="request" id="request" method="POST" data-netlify-recaptcha="true" netlify-honeypot="bot-field"
-        data-netlify="true">
+      <form name="privacy-request" id="privacy-request" method="POST" data-netlify-recaptcha="true"
+        netlify-honeypot="bot-field" data-netlify="true">
         <p style="text-align: center;" hidden>
           <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
         </p>
@@ -102,7 +102,7 @@
           <input type="email" name="email" class="text-input" placeholder="Email" />
         </p>
         <p style="text-align: center;">
-          <textarea form="questions" name="reuqest" class="text-input textarea" rows="3" data-min-rows="3"
+          <textarea form="privacy-request" name="request" class="text-input textarea" rows="3" data-min-rows="3"
             placeholder="Request"></textarea>
         </p>
         <div data-netlify-recaptcha="true"></div>
