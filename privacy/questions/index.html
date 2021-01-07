@@ -23,12 +23,13 @@
 
     .questions-cont {
       padding-top: 70px;
+      padding-bottom: 50px;
       width: 100%;
       text-align: center;
     }
 
     .text-input {
-      width: 250px;
+      width: 300px;
       padding: 3px;
     }
 
@@ -38,6 +39,22 @@
 
     .g-recaptcha div:first-child {
       margin: auto;
+    }
+
+    .submit-button {
+      width: 100px;
+      padding: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      background-color: rgb(235, 235, 235);
+      border: 1px solid rgb(128, 128, 128);
+      border-radius: 3px;
+      cursor: pointer;
+      outline: none;
+    }
+
+    .submit-button:active {
+      background-color: rgb(220, 220, 220);
     }
   </style>
 </head>
@@ -97,7 +114,7 @@
         </p>
         <div data-netlify-recaptcha="true"></div>
         <p style="text-align: center;">
-          <button type="submit">Send</button>
+          <button class="submit-button" type="submit">Send</button>
         </p>
       </form>
     </div>
