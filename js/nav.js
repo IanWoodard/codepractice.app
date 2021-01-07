@@ -29,7 +29,7 @@ $(document).ready(function () {
     );
   }
   $("#cookie-accept").click(function () {
-    window.localStorage.setItem("cookie-cosent", "yes");
+    window.localStorage.setItem("cookie-consent", "yes");
     $("#cookie-consent").hide();
   });
 });
