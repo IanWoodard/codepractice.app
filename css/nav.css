@@ -79,17 +79,31 @@ p.name {
 .content-wrapper {
   padding-bottom: 2.5rem;
 }
+.content-cont {
+  padding-top: 70px;
+  padding-bottom: 50px;
+  width: 100%;
+  text-align: center;
+}
 footer {
   position: absolute;
   bottom: 0;
   background-color: #353541;
   width: 100%;
-  height: 2.5rem;
+  min-height: 2.5em;
 }
 footer .container {
   padding: 10px;
   width: 100%;
   color: white;
+  display: flex;
+}
+footer .container span {
+  padding-right: 20px;
+}
+footer .container a {
+  padding-left: 10px;
+  padding-right: 10px;
 }
 .footer-cont {
   position: absolute;
@@ -111,6 +125,23 @@ a.footer-inner {
   }
 }
 @media only screen and (max-width: 900px) {
+  .content-wrapper {
+    padding-bottom: 120px;
+  }
+  .content-cont {
+    padding-bottom: 120px;
+  }
+  footer .container {
+    flex-direction: column;
+    text-align: center;
+  }
+  footer .container span {
+    padding-right: 0px;
+  }
+  footer .container a {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
   .nav {
     background: #fff;
     width: 200px;
