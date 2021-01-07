@@ -76,8 +76,8 @@
   <div class="page-container">
     <div class="questions-cont">
       <h1>Questions About Privacy</h1>
-      <form name="questions" method="POST" data-netlify-recaptcha="true" netlify-honeypot="bot-field" action="/success"
-        data-netlify="true">
+      <form name="questions" method="POST" data-netlify-recaptcha="true" netlify-honeypot="bot-field"
+        action="/success/index.html" data-netlify="true">
         <p hidden>
           <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
         </p>
@@ -87,7 +87,7 @@
         <p>
           <input type="email" name="email" class="text-input" placeholder="Email" />
         </p>
-        <div data-netlify-recaptcha="true"></div>
+        <div style="margin: 0 auto;" data-netlify-recaptcha="true"></div>
         <p>
           <textarea form="questions" name="message" class="text-input textarea" rows="3" data-min-rows="3"
             placeholder="Message"></textarea>
