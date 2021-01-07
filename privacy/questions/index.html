@@ -35,6 +35,10 @@
     .textarea {
       resize: vertical;
     }
+
+    .g-recaptcha div:first-child {
+      margin: auto;
+    }
   </style>
 </head>
 
@@ -87,7 +91,8 @@
         <p>
           <input type="email" name="email" class="text-input" placeholder="Email" />
         </p>
-        <div style="margin: 0 auto;" data-netlify-recaptcha="true"></div>
+        <div data-netlify-recaptcha="true">
+        </div>
         <p>
           <textarea form="questions" name="message" class="text-input textarea" rows="3" data-min-rows="3"
             placeholder="Message"></textarea>
