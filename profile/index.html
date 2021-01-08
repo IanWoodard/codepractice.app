@@ -419,7 +419,6 @@
       preloadProfile(url_search, false);
     } else {
       firebase.auth().onAuthStateChanged(function (user) {
-        $("#profile-cont").html("");
         if (user) {
           preloadProfile(user.uid, true);
         } else {
@@ -473,7 +472,6 @@
     function loadNotLoggedIn() {
       $("#profile-cont").append("<div style='width: 100%; height: 100%; position: absolute; background-color: white;'><div style='position: absolute; width: 200px; height: 200px; top: calc(50% - 100px); left: calc(50% - 100px)'><p>You are not logged in.</p></div></div>")
     }
-//    loadNotLoggedIn()
 
     /*
     var date_joined_ref = firebase.database().ref("users/" + uid + "/joined/date");
