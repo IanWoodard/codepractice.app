@@ -481,7 +481,7 @@
       if (user) {
         var score_ref = firebase.database().ref("users/" + user.uid);
         score_ref.once("value", (snapshot) => {
-          var score_val = snapshot.val()["numSolved"].count;
+          var score_val = snapshot.val()["num_solved"].count;
           $("#score").text(score_val);
           window.localStorage.setItem("score", score_val);
         });
