@@ -88,10 +88,6 @@ function addUserDefault(user) {
   id_ref.set({
     uid: uid_val,
   });
-  var num_solved_ref = ref.child("numSolved");
-  num_solved_ref.set({
-    count: 0,
-  });
 }
 
 function addSolvedProblem(problem_name) {
@@ -104,7 +100,7 @@ function addSolvedProblem(problem_name) {
     });
     problems_list.once("value", (snapshot) => {
       var user = firebase.database().ref("users/" + cur_user.uid);
-      var num_solved = user.child("numSolved");
+      var num_solved = user.child("num_solved");
       num_solved.set({
         count: snapshot.numChildren(),
       });

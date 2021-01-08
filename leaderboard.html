@@ -219,7 +219,7 @@
       <ul>
         <li><a href="index.html" class="nav-a" draggable="false">Practice</a></li>
         <li><a href="javascript:void(0)" class="nav-a" draggable="false">Leaderboard</a></li>
-        <li id="profile" style="display: none"><a href="profile.html" class="nav-a" draggable="false">Profile</a></li>
+        <li id="profile" style="display: none"><a href="/profile" class="nav-a" draggable="false">Profile</a></li>
         <li id="login"><a href="#" onclick="return logInGoogle();" class="nav-a" draggable="false">Login</a></li>
         <li id="logout" style="display: none">
           <a href="#" onclick="return logOutGoogle();" class="nav-a" draggable="false">Logout</a>
@@ -267,7 +267,7 @@
   <script src="js/app.js"></script>
   <script>
     var leaderboard_data = [];
-    var leaderboard = firebase.database().ref("users").orderByChild("numSolved/count").limitToLast(5);
+    var leaderboard = firebase.database().ref("users").orderByChild("num_solved/count").limitToLast(5);
     leaderboard.once("value", (snapshot) => {
       snapshot.forEach((childSnapshot) => {
         var childKey = childSnapshot.key;
@@ -282,7 +282,7 @@
           "<span class='leaderboard-name'>" +
           leaderboard_data[i].name +
           "</span><span class='leaderboard-score'>" +
-          leaderboard_data[i].numSolved.count +
+          leaderboard_data[i].num_solved.count +
           "<span class='leaderboard-score-units'> points</span></span></li>"
         );
       }
@@ -290,7 +290,7 @@
       $("#leaderboard").delay(300).fadeIn(300);
     });
     function gotoProfile(uid) {
-      window.location = "profile.html?uid=" + uid;
+      window.location = "/profile/index.html?uid=" + uid;
     }
   </script>
   <script>
