@@ -419,7 +419,7 @@
       preloadProfile(url_search, false);
     } else {
       firebase.auth().onAuthStateChanged(function (user) {
-        $("#profile-info-cont").html("");
+        $("#profile-cont").html("");
         if (user) {
           preloadProfile(user.uid, true);
         } else {
@@ -428,41 +428,39 @@
       });
     }
     function loadProfile(uid, loggedIn, difficultyCounts) {
-      if (!loggedIn) {
-        var ref = firebase.database().ref("users/" + uid);
-        ref.once("value", (snapshot) => {
-          var val = snapshot.val();
-          if (val != null) {
-            if (val.photo && val.photo.url) {
-              $("#profile-picture").attr("src", val.photo.url);
-            } else {
-              $("#profile-picture").attr("src", 'https://firebasestorage.googleapis.com/v0/b/personal-project-dac3e.appspot.com/o/profile_pictures%2Fdeafult_profile_picture.jpg?alt=media&token=15f9ae4c-d0fd-4a6c-8e8c-54c7009ad964');
-            }
-            if (val.name) {
-              $("#name").text(val.name);
-            }
-            if (val.joined && val.joined.date) {
-              $("#joined").text(val.joined.date);
-            }
-            if (val.num_solved && val.num_solved.count) {
-              $("#score").text(val.num_solved.count);
-            }
-            if (val.problems_solved_counts) {
-              if (val.problems_solved_counts.easy && val.problems_solved_counts.easy.count && val.problems_solved_counts.easy.count != 0) {
-                $("#progress-easy").width(((val.problems_solved_counts.easy.count / difficultyCounts.easy.count) * 100) + "%");
-              }
-              if (val.problems_solved_counts.medium && val.problems_solved_counts.medium.count && val.problems_solved_counts.medium.count != 0) {
-                $("#progress-medium").width(((val.problems_solved_counts.medium.count / difficultyCounts.medium.count) * 100) + "%");
-              }
-              if (val.problems_solved_counts.hard && val.problems_solved_counts.hard.count && val.problems_solved_counts.hard.count != 0) {
-                $("#progress-hard").width(((val.problems_solved_counts.hard.count / difficultyCounts.hard.count) * 100) + "%");
-              }
-            }
-            $("#profile-loader").fadeOut(150);
-            $("#profile-cont").delay(150).fadeIn(150);
+      var ref = firebase.database().ref("users/" + uid);
+      ref.once("value", (snapshot) => {
+        var val = snapshot.val();
+        if (val != null) {
+          if (val.photo && val.photo.url) {
+            $("#profile-picture").attr("src", val.photo.url);
+          } else {
+            $("#profile-picture").attr("src", 'https://firebasestorage.googleapis.com/v0/b/personal-project-dac3e.appspot.com/o/profile_pictures%2Fdeafult_profile_picture.jpg?alt=media&token=15f9ae4c-d0fd-4a6c-8e8c-54c7009ad964');
           }
-        });
-      }
+          if (val.name) {
+            $("#name").text(val.name);
+          }
+          if (val.joined && val.joined.date) {
+            $("#joined").text(val.joined.date);
+          }
+          if (val.num_solved && val.num_solved.count) {
+            $("#score").text(val.num_solved.count);
+          }
+          if (val.problems_solved_counts) {
+            if (val.problems_solved_counts.easy && val.problems_solved_counts.easy.count && val.problems_solved_counts.easy.count != 0) {
+              $("#progress-easy").width(((val.problems_solved_counts.easy.count / difficultyCounts.easy.count) * 100) + "%");
+            }
+            if (val.problems_solved_counts.medium && val.problems_solved_counts.medium.count && val.problems_solved_counts.medium.count != 0) {
+              $("#progress-medium").width(((val.problems_solved_counts.medium.count / difficultyCounts.medium.count) * 100) + "%");
+            }
+            if (val.problems_solved_counts.hard && val.problems_solved_counts.hard.count && val.problems_solved_counts.hard.count != 0) {
+              $("#progress-hard").width(((val.problems_solved_counts.hard.count / difficultyCounts.hard.count) * 100) + "%");
+            }
+          }
+          $("#profile-loader").fadeOut(150);
+          $("#profile-cont").delay(150).fadeIn(150);
+        }
+      });
     }
 
     function preloadProfile(uid, loggedIn) {
