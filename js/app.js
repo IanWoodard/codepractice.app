@@ -16,7 +16,7 @@ var provider = new firebase.auth.GoogleAuthProvider();
 function logInGoogle() {
   firebase
     .auth()
-    .signInWithPopup(provider)
+    .signInWithRedirect(provider)
     .then(function (result) {
       //logged in
     })
