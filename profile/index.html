@@ -53,6 +53,7 @@
 
     .profile-right {
       width: 75%;
+      padding-top: 50px;
       padding-bottom: 30px;
     }
 
@@ -282,6 +283,29 @@
       animation: bounce 1s ease-in-out 0.66s infinite;
     }
 
+    .profile-nav {
+      width: 100%;
+      background-color: #f8f8f8;
+      border-bottom: 1px solid grey;
+      display: flex;
+      z-index: 1;
+    }
+
+    .profile-nav a {
+      width: 25%;
+      padding: 10px;
+      color: black;
+      text-decoration: none;
+    }
+
+    .profile-nav a.active {
+      border-bottom: 3px solid orange;
+    }
+
+    .profile-nav a:not(.active):hover {
+      border-bottom: 3px solid grey;
+    }
+
     @keyframes bounce {
 
       0%,
@@ -318,6 +342,7 @@
 
       .profile-right {
         width: 100%;
+        padding-top: 0px;
       }
     }
 
@@ -399,6 +424,13 @@
             </div>
           </div>
           <div class="profile-right">
+            <div class="profile-nav">
+              <a href="javascript:void(0);" class="profile-nav-button active" id="overview">Overview</a><a
+                href="javascript:void(0);" class="profile-nav-button" id="bookmarks"
+                data-cont="#profile-bookmarks">Bookmarks</a>
+            </div>
+            <div class="profile-bookmarks profile-cont-right" id="profile-bookmarks" hidden>
+            </div>
           </div>
         </div>
       </div>
@@ -433,6 +465,7 @@
         }
       });
     }
+    var problems_map = { "sum": "Sum", "product": "Product", "min": "Min", "max": "Max", "ispalindrome": "IsPalindrome", "kthindexof": "KthIndexOf", "mostfrequentint": "MostFrequentInt", "islinear": "IsLinear", "uppercasefirst": "UpperCaseFirst", "eulerphi": "EulerPhi", "distinctsort": "DistinctSort", "isbetween": "IsBetween" };
     function loadProfile(uid, loggedIn, difficultyCounts) {
       var ref = firebase.database().ref("users/" + uid);
       ref.once("value", (snapshot) => {
@@ -463,6 +496,11 @@
               $("#progress-hard").width(((val.problems_solved_counts.hard.count / difficultyCounts.hard.count) * 100) + "%");
             }
           }
+          if (val.bookmarks) {
+            Object.keys(val.bookmarks).forEach(function (key) {
+              $("#profile-bookmarks").append("<p><strong>" + problems_map[key] + "</strong></p>");
+            });
+          }
           $("#profile-loader").fadeOut(150);
           $("#profile-cont").delay(150).fadeIn(150);
         }
@@ -481,6 +519,13 @@
       $("#profile-loader").fadeOut(300);
       $("#profile-cont").delay(300).fadeIn(300);
     }
+
+    $(".profile-nav-button").click(function () {
+      $(".profile-nav-button").removeClass("active");
+      $(this).addClass("active");
+      $(".profile-cont-right").hide();
+      $($(this).attr("data-cont")).show();
+    });
 
     /*
     var date_joined_ref = firebase.database().ref("users/" + uid + "/joined/date");
