@@ -21,7 +21,8 @@ $("#bookmark").click(function () {
 });
 firebase.auth().onAuthStateChanged(function (user) {
   var path = window.location.pathname;
-  var problem = path.includes(".") ? path.substring(1, path.indexOf(".")) : path.substring(1);
+  var problem = path.replace("/problems/", "");
+  problem = problem.replace("/", "");
   if (user) {
     if (window.localStorage.getItem(problem + "-bookmark") != undefined) {
       $("#bookmark").attr("src", "../../svg/bookmarked.svg");
