@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>UpperCaseFirst</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="../../lib/codemirror.css" />
+  <link rel="stylesheet" href="../../theme/monokai.css" />
+  <link rel="stylesheet" href="../../addon/hint/show-hint.css" />
+  <link rel="stylesheet" href="../../addon/lint/lint.css" />
+  <link rel="stylesheet" href="../../css/practice.css" />
+  <link rel="stylesheet" href="../../css/nav.css" type="text/css" />
+  <script src="../../lib/codemirror.js"></script>
+  <script src="../../mode/javascript/javascript.js"></script>
+  <script src="https://unpkg.com/jshint@2.9.6/dist/jshint.js"></script>
+  <script src="../../addon/lint/lint.js"></script>
+  <script src="../../addon/lint/javascript-lint.js"></script>
+  <script src="../../addon/selection/active-line.js"></script>
+  <script src="../../addon/edit/closebrackets.js"></script>
+  <script src="../../addon/edit/matchbrackets.js"></script>
+  <script src="../../addon/hint/show-hint.js"></script>
+  <script src="../../addon/hint/javascript-hint.js"></script>
+</head>
+
+<body>
+  <nav>
+    <div id="nav" class="nav">
+      <ul>
+        <li><a href="../../index.html" class="nav-a" draggable="false">Practice</a></li>
+        <li><a href="../../leaderboard.html" class="nav-a" draggable="false">Leaderboard</a></li>
+        <li id="profile" style="display: none"><a href="../../profile" class="nav-a" draggable="false">Profile</a></li>
+        <li id="login"><a href="#" onclick="return logInGoogle();" class="nav-a" draggable="false">Login</a></li>
+        <li id="logout" style="display: none">
+          <a href="#" onclick="return logOutGoogle();" class="nav-a" draggable="false">Logout</a>
+        </li>
+        <li class="navname">
+          <p class="name">Code Practice</p>
+        </li>
+      </ul>
+    </div>
+    <div class="navbar-cont">
+      <div class="navbar-hamburger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="navbarname">
+        <p class="name">Code Practice</p>
+      </div>
+    </div>
+  </nav>
+  <div class="page-container">
+    <div class="content-wrapper">
+      <div class="documentation-cont">
+        <div id="documentation" class="documentation">
+          <p class="doc-header-upper"><strong>UpperCaseFirst</strong></p>
+          <p class="doc-header-lower"><span class="doc-difficulty easy">Easy</span> <img id="bookmark"
+              src="../../svg/bookmark.svg" width="14" height="14"></img></p>
+          <p>Given a string, return that same string with all of the upper-case characters at the front.</p>
+          <p><em>All other orderings should be kept. There are no spaces.</em></p>
+          <p>
+            <strong>Parameter(s):</strong>
+          <ul>
+            <li><em>str:</em> a string</li>
+          </ul>
+          </p>
+          <p>
+            <strong>Returns:</strong>
+          <ul>
+            <li><em>string:</em> a string with all of the upper-case characters at the front</li>
+          </ul>
+          </p>
+          <p>
+            <strong>Constraints:</strong>
+          <ul>
+            <li><code>str &ne; null</code></li>
+            <li><code>1 &leq; str.length &leq; 1000</code></li>
+          </ul>
+          </p>
+          <p>
+            <strong>Example 1:</strong>
+          <p>Input:</p>
+          <div class="code-sample"><code>"heLlO"</code></div>
+          <p>Output:</p>
+          <div class="code-sample"><code>"LOhel"</code></div>
+          </p>
+          <p>
+            <strong>Example 2:</strong>
+          <p>Input:</p>
+          <div class="code-sample"><code>"fOoBAr"</code></div>
+          <p>Output:</p>
+          <div class="code-sample"><code>"OBAfor"</code></div>
+          </p>
+          <p>
+            <strong>Example 3:</strong>
+          <p>Input:</p>
+          <div class="code-sample"><code>"cake"</code></div>
+          <p>Output:</p>
+          <div class="code-sample"><code>"cake"</code></div>
+          </p>
+        </div>
+        <button class="show-button" id="show-more">Show More</button>
+        <button class="show-button" id="show-less" hidden>Show Less</button>
+      </div>
+      <div class="code-cont">
+        <textarea id="code" name="code">
+function upperCaseFirst(str) {
+  return false;
+}</textarea>
+        <div id="remember-code-cont" style="text-align: center"></div>
+      </div>
+      <div class="post-code-cont">
+        <button id="run-tests">Run Tests</button>
+        <div id="progress-wrap" class="progress-wrap" hidden>
+          <div id="progress-cont" class="progress-cont">
+            <div id="progress-bar" class="progress-bar"></div>
+          </div>
+          <span>Ran <span id="ran-tests">0</span> tests</span>
+        </div>
+        <div id="tests" class="tests-cont"></div>
+      </div>
+    </div>
+    <footer>
+      <div class="container">
+        <span>Copyright © 2021 CodePractice
+        </span><a href="../../about-us">About Us</a><a href="../../privacy">Privacy
+          Policy</a><a href="../../roadmap">Roadmap</a>
+      </div>
+    </footer>
+  </div>
+</body>
+<script type="text/javascript" src="../../js/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="../../js/nav.js"></script>
+<script type="text/javascript" src="../../js/preload.js"></script>
+<script>
+  var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+    lineNumbers: true,
+    theme: "default",
+    styleActiveLine: true,
+    gutters: ["CodeMirror-lint-markers"],
+    lint: true,
+    autoCloseBrackets: true,
+    matchBrackets: true,
+    extraKeys: { "Ctrl-Space": "autocomplete" },
+    mode: { name: "javascript", globalVars: false },
+  });
+  if (window.localStorage.getItem("upperCaseFirst") != null) {
+    $("#remember-code-cont").append(
+      "<p " +
+      "style='margin: 0; padding: 5px;'>" +
+      "Your previous code was restored. " +
+      "<span id='reset-to-default' style='text-decoration: underline; " +
+      "cursor: pointer;'>Reset code to default</span>" +
+      "<img src='../../svg/x-icon.svg' width='16' height='16' class='fas fa-times' id='close-remember-code-cont' style='float: right; cursor: pointer;'></i></p>"
+    );
+    editor.setValue(window.localStorage.getItem("upperCaseFirst"));
+  }
+  $("#close-remember-code-cont").click(function () {
+    $("#remember-code-cont").hide();
+  });
+  $("#reset-to-default").click(function () {
+    window.localStorage.removeItem("upperCaseFirst");
+    location.reload();
+  });
+  editor.on("change", function (cm, change) {
+    window.localStorage.setItem("upperCaseFirst", editor.getValue());
+  });
+</script>
+<script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-database.js"></script>
+<script src="../../js/app.js"></script>
+<script src="../../js/practice.js"></script>
+<script type="text/javascript" src="../../js/tester.js"></script>
+<script src="../../js/confetti.min.js"></script>
+<script>
+  const ref = {
+    tests: [
+      { func: "return upperCaseFirst('helloWORLD');", ans: "WORLDhello" },
+      { func: "return upperCaseFirst('moON');", ans: "ONmo" },
+      { func: "return upperCaseFirst('KeY');", ans: "KYe" },
+      { func: "return upperCaseFirst('cOlD');", ans: "ODcl" },
+      { func: "return upperCaseFirst('cOLd');", ans: "OLcd" },
+    ],
+  };
+  $("#run-tests").click(function () {
+    runtests(ref, "upperCaseFirst");
+  });
+</script>
+
+</html>
