@@ -3,14 +3,14 @@ $("#bookmark").click(function () {
   var cur_path = window.location.pathname;
   var cur_problem = cur_path.includes(".") ? cur_path.substring(1, cur_path.indexOf(".")) : cur_path.substring(1);
   if (cur_user) {
-    if ($("#bookmark").attr("src") == "svg/bookmark.svg") {
-      $("#bookmark").attr("src", "svg/bookmarked.svg");
+    if ($("#bookmark").attr("src") == "../../svg/bookmark.svg") {
+      $("#bookmark").attr("src", "../../svg/bookmarked.svg");
       firebase
         .database()
         .ref("users/" + cur_user.uid + "/bookmarks/" + cur_problem)
         .set({ bookmarked: true });
     } else {
-      $("#bookmark").attr("src", "svg/bookmark.svg");
+      $("#bookmark").attr("src", "../../svg/bookmark.svg");
       firebase
         .database()
         .ref("users/" + cur_user.uid + "/bookmarks")
