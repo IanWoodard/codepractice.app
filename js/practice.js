@@ -38,7 +38,7 @@ firebase.auth().onAuthStateChanged(function (user) {
         } else {
           window.localStorage.removeItem(problem + "-bookmark");
           if ($("#bookmark").attr("src") != "../../svg/bookmark.svg") {
-            $("#bookmark").attr("src", "../..svg/bookmark.svg");
+            $("#bookmark").attr("src", "../../svg/bookmark.svg");
           }
         }
       });
