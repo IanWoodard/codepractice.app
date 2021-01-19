@@ -306,6 +306,25 @@
       border-bottom: 3px solid grey;
     }
 
+    .bookmark-link {
+      font-size: 18px;
+      font-weight: 600;
+      color: white;
+      padding: 6px 12px;
+    }
+
+    .easy-bookmark {
+      background-color: green;
+    }
+
+    .medium-bookmark {
+      background-color: orange;
+    }
+
+    .hard-bookmark {
+      background-color: red;
+    }
+
     @keyframes bounce {
 
       0%,
@@ -465,7 +484,7 @@
         }
       });
     }
-    var problems_map = { "sum": "Sum", "product": "Product", "min": "Min", "max": "Max", "ispalindrome": "IsPalindrome", "kthindexof": "KthIndexOf", "mostfrequentint": "MostFrequentInt", "islinear": "IsLinear", "uppercasefirst": "UpperCaseFirst", "eulerphi": "EulerPhi", "distinctsort": "DistinctSort", "isbetween": "IsBetween" };
+    var problems_map = { "sum": ["Sum", "../problems/sum", "easy"], "product": ["Product", "../problems/product", "easy"], "min": ["Min", "../problems/min", "easy"], "max": ["Max", "../problems/max", "easy"], "ispalindrome": ["IsPalindrome", "../problems/ispalindrome", "medium"], "kthindexof": ["KthIndexOf", "../problems/kthindexof", "easy"], "mostfrequentint": ["MostFrequentInt", "../problems/mostfrequentint", "medium"], "islinear": ["IsLinear", "../problems/islinear", "medium"], "uppercasefirst": ["UpperCaseFirst", "../problems/uppercasefirst", "easy"], "eulerphi": ["EulerPhi", "../problems/eulerphi", "hard"], "distinctsort": ["DistinctSort", "../problems/distinctsort", "medium"], "isbetween": ["IsBetween", "../problems/isbetween", "easy"] };
     function loadProfile(uid, loggedIn, difficultyCounts) {
       var ref = firebase.database().ref("users/" + uid);
       ref.once("value", (snapshot) => {
@@ -498,7 +517,7 @@
           }
           if (val.bookmarks) {
             Object.keys(val.bookmarks).forEach(function (key) {
-              $("#profile-bookmarks").append("<p><strong>" + problems_map[key] + "</strong></p>");
+              $("#profile-bookmarks").append("<p><a class='bookmark-link " + problems_map[key][2] + "-bookmark' href='" + problems_map[key][1] + "'>" + problems_map[key][0] + "</strong></p>");
             });
           }
           $("#profile-loader").fadeOut(150);
