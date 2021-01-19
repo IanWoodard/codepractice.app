@@ -24,7 +24,7 @@ firebase.auth().onAuthStateChanged(function (user) {
   var problem = path.includes(".") ? path.substring(1, path.indexOf(".")) : path.substring(1);
   if (user) {
     if (window.localStorage.getItem(problem + "-bookmark") != undefined) {
-      $("#bookmark").attr("src", "svg/bookmarked.svg");
+      $("#bookmark").attr("src", "../../svg/bookmarked.svg");
     }
     firebase
       .database()
@@ -32,13 +32,13 @@ firebase.auth().onAuthStateChanged(function (user) {
       .once("value", (snapshot) => {
         if (snapshot.val() != null) {
           window.localStorage.setItem(problem + "-bookmark", true);
-          if ($("#bookmark").attr("src") == "svg/bookmark.svg") {
-            $("#bookmark").attr("src", "svg/bookmarked.svg");
+          if ($("#bookmark").attr("src") == "../../svg/bookmark.svg") {
+            $("#bookmark").attr("src", "../../svg/bookmarked.svg");
           }
         } else {
           window.localStorage.removeItem(problem + "-bookmark");
-          if ($("#bookmark").attr("src") != "svg/bookmark.svg") {
-            $("#bookmark").attr("src", "svg/bookmark.svg");
+          if ($("#bookmark").attr("src") != "../../svg/bookmark.svg") {
+            $("#bookmark").attr("src", "../..svg/bookmark.svg");
           }
         }
       });
