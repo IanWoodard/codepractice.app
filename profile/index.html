@@ -471,11 +471,25 @@
   <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-storage.js"></script>
   <script src="../js/app.js"></script>
   <script>
-    var url_search = window.location.search;
-    if (url_search != "") {
-      url_search = url_search.replace("?uid=", "");
-      preloadProfile(url_search, false);
-    } else {
+    var url_search_arr = window.location.search.replace("?", "").split("&");
+    var has_url_uid_param = false;
+    for (var i = 0; i < url_search_arr.length; i++) {
+      if (url_search_arr[i].includes("uid=")) {
+        preloadProfile(url_search_arr[i].replace("uid=", ""), false);
+        has_url_uid_param = true;
+      } else if (url_search_arr[i].includes("tab=")) {
+        var tab = url_search_arr[i].replace("tab=", "");
+        $(".profile-nav-button").removeClass("active");
+        $("#" + tab).addClass("active");
+        $(".profile-cont-right").hide();
+        $($("#" + tab).attr("data-cont")).show();
+      }
+    }
+    if ($(".profile-nav-button").filter(".active").length === 0) {
+      $("#overview").addClass("active");
+      $($("#overview").attr("data-cont")).show();
+    }
+    if (!has_url_uid_param) {
       firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
           preloadProfile(user.uid, true);
