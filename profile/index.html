@@ -306,22 +306,22 @@
       border-bottom: 3px solid grey;
     }
 
-    .bookmark-link {
+    .problem-link {
       font-size: 18px;
       font-weight: 600;
       color: white;
       padding: 6px 12px;
     }
 
-    .easy-bookmark {
+    .easy-problem {
       background-color: green;
     }
 
-    .medium-bookmark {
+    .medium-problem {
       background-color: orange;
     }
 
-    .hard-bookmark {
+    .hard-problem {
       background-color: red;
     }
 
@@ -444,9 +444,11 @@
           </div>
           <div class="profile-right">
             <div class="profile-nav">
-              <a href="javascript:void(0);" class="profile-nav-button active" id="overview">Overview</a><a
-                href="javascript:void(0);" class="profile-nav-button" id="bookmarks"
-                data-cont="#profile-bookmarks">Bookmarks</a>
+              <a href="javascript:void(0);" class="profile-nav-button active" id="solved"
+                data-cont="#profile-solved">Solved</a><a href="javascript:void(0);" class="profile-nav-button"
+                id="bookmarks" data-cont="#profile-bookmarks">Bookmarks</a>
+            </div>
+            <div class="profile-solved profile-cont-right" id="profile-solved">
             </div>
             <div class="profile-bookmarks profile-cont-right" id="profile-bookmarks" hidden>
             </div>
@@ -499,6 +501,7 @@
       });
     }
     var problems_map = { "sum": ["Sum", "../problems/sum", "easy"], "product": ["Product", "../problems/product", "easy"], "min": ["Min", "../problems/min", "easy"], "max": ["Max", "../problems/max", "easy"], "ispalindrome": ["IsPalindrome", "../problems/ispalindrome", "medium"], "kthindexof": ["KthIndexOf", "../problems/kthindexof", "easy"], "mostfrequentint": ["MostFrequentInt", "../problems/mostfrequentint", "medium"], "islinear": ["IsLinear", "../problems/islinear", "medium"], "uppercasefirst": ["UpperCaseFirst", "../problems/uppercasefirst", "easy"], "eulerphi": ["EulerPhi", "../problems/eulerphi", "hard"], "distinctsort": ["DistinctSort", "../problems/distinctsort", "medium"], "isbetween": ["IsBetween", "../problems/isbetween", "easy"] };
+    var difficulty_map = { "easy": 1, "medium": 2, "hard": 3 }
     function loadProfile(uid, loggedIn, difficultyCounts) {
       var ref = firebase.database().ref("users/" + uid);
       ref.once("value", (snapshot) => {
@@ -529,9 +532,14 @@
               $("#progress-hard").width(((val.problems_solved_counts.hard.count / difficultyCounts.hard.count) * 100) + "%");
             }
           }
+          if (val.problems) {
+            Object.keys(val.problems).forEach(function (key) {
+              $("#profile-solved").append("<p><a class='problem-link " + problems_map[key][2] + "-problem' href='" + problems_map[key][1] + "'>" + problems_map[key][0] + "</strong></p>");
+            });
+          }
           if (val.bookmarks) {
             Object.keys(val.bookmarks).forEach(function (key) {
-              $("#profile-bookmarks").append("<p><a class='bookmark-link " + problems_map[key][2] + "-bookmark' href='" + problems_map[key][1] + "'>" + problems_map[key][0] + "</strong></p>");
+              $("#profile-bookmarks").append("<p><a class='problem-link " + problems_map[key][2] + "-problem' href='" + problems_map[key][1] + "'>" + problems_map[key][0] + "</strong></p>");
             });
           }
           $("#profile-loader").fadeOut(150);
