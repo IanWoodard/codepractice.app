@@ -80,15 +80,16 @@
 
     .profile-settings button {
       padding: 5px 15px;
-      border: 1px solid grey;
-      background-color: rgb(240, 240, 240);
+      border: 0;
+      background-color: dodgerblue;
+      color: white;
       outline: none;
       cursor: pointer;
       border-radius: 3px;
     }
 
     .profile-settings button:active {
-      background-color: rgb(225, 225, 225);
+      background-color: rgb(15, 125, 255);
     }
 
     .profile-numbers {
@@ -507,6 +508,9 @@
       ref.once("value", (snapshot) => {
         var val = snapshot.val();
         if (val != null) {
+          if (loggedIn) {
+            $("#profile-settings").show();
+          }
           if (val.photo && val.photo.url) {
             $("#profile-picture").attr("src", val.photo.url);
           } else {
